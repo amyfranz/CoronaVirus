@@ -1,0 +1,46 @@
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (124.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (108.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdvices (20200323133508)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "advices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "video" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323133508"]]
+  [1m[35m (95.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePastimes (20200323133829)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "pastimes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "content" text, "rating" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323133829"]]
+  [1m[35m (76.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20200323133858)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "content" text, "pastime_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_pastime_id" ON "comments" ("pastime_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323133858"]]
+  [1m[35m (190.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-23 14:26:56.973656"], ["updated_at", "2020-03-23 14:26:56.973656"]]
+  [1m[35m (106.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPastime Load (1.8ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.6ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "this sucks"], ["content", "doing a project"], ["rating", 9], ["created_at", "2020-03-23 14:33:08.758083"], ["updated_at", "2020-03-23 14:33:08.758083"]]
+  [1m[35m (72.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (1.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "rating", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "dasdas"], ["content", "aaaaaaq"], ["rating", 9], ["created_at", "2020-03-23 14:33:19.534171"], ["updated_at", "2020-03-23 14:33:19.534171"]]
+  [1m[35m (110.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mComment Load (1.0ms)[0m  [1m[34mSELECT "comments".* FROM "comments" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("username", "content", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "ajamarco"], ["content", "hdaushdausdhasudhasu"], ["pastime_id", 1], ["created_at", "2020-03-23 14:34:01.920562"], ["updated_at", "2020-03-23 14:34:01.920562"]]
+  [1m[35m (105.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (5.5ms)[0m  [1m[32mINSERT INTO "comments" ("username", "content", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "ajamardasdasco"], ["content", "qqqqqqqq"], ["pastime_id", 1], ["created_at", "2020-03-23 14:34:11.245366"], ["updated_at", "2020-03-23 14:34:11.245366"]]
+  [1m[35m (83.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mPastime Load (0.7ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" ORDER BY "pastimes"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPastime Load (0.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" ORDER BY "pastimes"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."pastime_id" = ? LIMIT ?[0m  [["pastime_id", 1], ["LIMIT", 11]]
