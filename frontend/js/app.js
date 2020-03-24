@@ -1,8 +1,8 @@
 const fetchData = (URL, option = nil) => {
   if (option) {
-    return fetch(URL, option).then(res => res.json);
+    return fetch(URL, option).then(res => res.json());
   } else {
-    return fetch(URL).then(res => res.json);
+    return fetch(URL).then(res => res.json());
   }
 };
 
@@ -106,5 +106,50 @@ const addCountryMarker = (countryData, map) => {
     }
   });
 };
+
+const searchBar = () => {
+  const cities = [];
+  fetchData(
+    "https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php",
+    {
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+        "x-rapidapi-key": "8bb8e967eemsh8a6761ce1927604p1bcdb8jsn7a749ed9576c"
+      }
+    }
+  ).then(data => {
+    cities.push(...data["countries_stat"]);
+  });
+
+  const filterCities = wordToMatch => {
+    return cities.filter(place => {
+      const regex = new RegExp(wordToMatch, "gi");
+      return place["country_name"].match(regex);
+    });
+  };
+  const search = document.querySelector(".search");
+  const suggest = document.querySelector(".suggestions");
+
+  search.addEventListener("change", event => {
+    displayRes(event);
+  });
+
+  search.addEventListener("keyup", event => displayRes(event));
+
+  const displayRes = event => {
+    const matchArr = filterCities(event.target.value);
+    const html = matchArr
+      .map(place => {
+        const regex = new RegExp(event.target.value, "gi");
+        const cityName = place.country_name;
+        return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
+      })
+      .join("");
+    suggest.innerHTML = html;
+  };
+};
+
+searchBar();
 
 createMap();
