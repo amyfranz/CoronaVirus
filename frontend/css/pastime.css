@@ -1,0 +1,146 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: linear-gradient(
+      60deg,
+      #5ff281,
+      #5f86f2,
+      #a65ff2,
+      #f25fd0,
+      #f25f61,
+      #f2cb5f
+    )
+    0 50%;
+  --background-size: 300%, 300%;
+  --animation-properties: alternate-gradient 5s alternate infinite;
+}
+
+.pastime-wrapper {
+  min-height: 100vh;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+}
+
+.pastime-header {
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pastime-header h1 {
+  font-size: 2.5rem;
+  font-weight: 100;
+  padding: 0 1rem;
+}
+
+.pastime-header p {
+  border-bottom: 1px solid #eee;
+  padding: 1rem;
+}
+
+.table {
+  margin: 5rem;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  color: #eee;
+}
+
+.card {
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: 100;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+}
+
+.card::before {
+  background-color: #2b2b2b;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.card::after {
+  background: var(--background-color);
+  top: -3px;
+  left: -3px;
+  width: calc(100% + (3px * 2));
+  height: calc(100% + (3px * 2));
+  background-size: var(--background-size);
+  z-index: -2;
+  animation: var(--animation-properties);
+}
+
+.card i {
+  font-size: 10rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--background-color);
+  background-size: var(--background-size);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: var(--animation-properties);
+}
+
+.card-head {
+  letter-spacing: 1px;
+  background: var(--background-color);
+  background-size: var(--background-size);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: var(--animation-properties);
+}
+
+.card p {
+  font-size: 1.5rem;
+  width: 70%;
+}
+
+.card span {
+  font-size: 2rem;
+}
+
+.card a {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #c2c2c2;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  margin-top: 1.5rem;
+}
+
+.card a:hover {
+  background: linear-gradient(60deg, #5ff281, #5f86f2, #a65ff2) 0 50%;
+  border: none;
+  color: white;
+}
+
+@keyframes alternate-gradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
