@@ -1,0 +1,146 @@
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (49.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (695.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (177.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdvices (20200324111643)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "advices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "video" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111643"]]
+  [1m[35m (107.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTags (20200324111859)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "advice_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_491f9bd7e2"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_tags_on_advice_id" ON "tags" ("advice_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111859"]]
+  [1m[35m (284.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePastimes (20200324112846)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "pastimes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "content" text, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112846"]]
+  [1m[35m (91.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRatings (20200324112959)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "rate" integer, "pastime_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c446f2b479"
+FOREIGN KEY ("pastime_id")
+  REFERENCES "pastimes" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_ratings_on_pastime_id" ON "ratings" ("pastime_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112959"]]
+  [1m[35m (124.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-24 11:30:23.804749"], ["updated_at", "2020-03-24 11:30:23.804749"]]
+  [1m[35m (70.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAdvice Load (1.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mPastime Load (0.4ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mRating Load (0.9ms)[0m  [1m[34mSELECT "ratings".* FROM "ratings" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentcontentcontent"], ["video", "kkkkkkkk"], ["image", "njnjn"], ["created_at", "2020-03-24 11:45:59.527961"], ["updated_at", "2020-03-24 11:45:59.527961"]]
+  [1m[35m (88.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (1.1ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentckjhkjhkjhkjhkt"], ["video", "uuuuuu"], ["image", "iijijij"], ["created_at", "2020-03-24 11:45:59.627094"], ["updated_at", "2020-03-24 11:45:59.627094"]]
+  [1m[35m (86.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentkjhkjhkjhkjntent"], ["video", "kkkkkyyykkk"], ["image", "drdrdrdr"], ["created_at", "2020-03-24 11:45:59.731807"], ["updated_at", "2020-03-24 11:45:59.731807"]]
+  [1m[35m (59.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhentcontent"], ["video", "kkyyyyyyykkkkk"], ["image", "tftf"], ["created_at", "2020-03-24 11:45:59.797495"], ["updated_at", "2020-03-24 11:45:59.797495"]]
+  [1m[35m (75.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.7ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhkent"], ["video", "rrrrrrrrr"], ["image", "gygyyg"], ["created_at", "2020-03-24 11:45:59.882702"], ["updated_at", "2020-03-24 11:45:59.882702"]]
+  [1m[35m (78.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go onvbnvbnvut"], ["advice_id", 1], ["created_at", "2020-03-24 11:46:00.144658"], ["updated_at", "2020-03-24 11:46:00.144658"]]
+  [1m[35m (63.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (2.6ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont govnbvnb out"], ["advice_id", 2], ["created_at", "2020-03-24 11:46:00.244597"], ["updated_at", "2020-03-24 11:46:00.244597"]]
+  [1m[35m (68.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go nbcnbvnbvout"], ["advice_id", 2], ["created_at", "2020-03-24 11:46:00.329193"], ["updated_at", "2020-03-24 11:46:00.329193"]]
+  [1m[35m (90.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (4.0ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go ovcxvxcvcxut"], ["advice_id", 3], ["created_at", "2020-03-24 11:46:00.443180"], ["updated_at", "2020-03-24 11:46:00.443180"]]
+  [1m[35m (73.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.7ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont ffffffffgo out"], ["advice_id", 3], ["created_at", "2020-03-24 11:46:00.555325"], ["updated_at", "2020-03-24 11:46:00.555325"]]
+  [1m[35m (60.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (1.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dasdas"], ["advice_id", 1], ["created_at", "2020-03-24 11:46:00.646561"], ["updated_at", "2020-03-24 11:46:00.646561"]]
+  [1m[35m (62.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTag Create (0.7ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont gdasdasdsao out"], ["advice_id", 5], ["created_at", "2020-03-24 11:46:00.734150"], ["updated_at", "2020-03-24 11:46:00.734150"]]
+  [1m[35m (79.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTag Create (1.8ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "donteqweqweqweqw go out"], ["advice_id", 4], ["created_at", "2020-03-24 11:46:00.845653"], ["updated_at", "2020-03-24 11:46:00.845653"]]
+  [1m[35m (99.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (1.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringfgg"], ["content", "teqweqweqxt"], ["title", "strinxcvcxv vcxvg"], ["created_at", "2020-03-24 11:46:00.980203"], ["updated_at", "2020-03-24 11:46:00.980203"]]
+  [1m[35m (70.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (3.6ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringggg"], ["content", "tefsdfsxt"], ["title", "striqqqqqng"], ["created_at", "2020-03-24 11:46:01.071067"], ["updated_at", "2020-03-24 11:46:01.071067"]]
+  [1m[35m (87.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinfddfdg"], ["content", "tesdfsdxt"], ["title", "striwwwwng"], ["created_at", "2020-03-24 11:46:01.180200"], ["updated_at", "2020-03-24 11:46:01.180200"]]
+  [1m[35m (88.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.6ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strindsdsg"], ["content", "teccxzxt"], ["title", "strindasdasdg"], ["created_at", "2020-03-24 11:46:01.278226"], ["updated_at", "2020-03-24 11:46:01.278226"]]
+  [1m[35m (98.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinasdqweg"], ["content", "qweqwetext"], ["title", "strindddddddg"], ["created_at", "2020-03-24 11:46:01.391155"], ["updated_at", "2020-03-24 11:46:01.391155"]]
+  [1m[35m (84.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRating Create (1.9ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 5], ["pastime_id", 1], ["created_at", "2020-03-24 11:46:01.566428"], ["updated_at", "2020-03-24 11:46:01.566428"]]
+  [1m[35m (62.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (1.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRating Create (0.4ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 4], ["pastime_id", 3], ["created_at", "2020-03-24 11:46:01.647652"], ["updated_at", "2020-03-24 11:46:01.647652"]]
+  [1m[35m (84.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.6ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-24 11:46:01.750611"], ["updated_at", "2020-03-24 11:46:01.750611"]]
+  [1m[35m (77.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (1.0ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 1], ["pastime_id", 2], ["created_at", "2020-03-24 11:46:01.856027"], ["updated_at", "2020-03-24 11:46:01.856027"]]
+  [1m[35m (100.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-24 11:46:01.972273"], ["updated_at", "2020-03-24 11:46:01.972273"]]
+  [1m[35m (136.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" ORDER BY "pastimes"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPastime Load (0.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" ORDER BY "pastimes"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mRating Load (0.2ms)[0m  [1m[34mSELECT "ratings".* FROM "ratings" WHERE "ratings"."pastime_id" = ? LIMIT ?[0m  [["pastime_id", 1], ["LIMIT", 11]]
+  [1m[36mPastime Load (1.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" ORDER BY "pastimes"."id" ASC LIMIT ? OFFSET ?[0m  [["LIMIT", 1], ["OFFSET", 1]]
+  [1m[36mRating Load (0.6ms)[0m  [1m[34mSELECT "ratings".* FROM "ratings" WHERE "ratings"."pastime_id" = ? LIMIT ?[0m  [["pastime_id", 2], ["LIMIT", 11]]
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" ORDER BY "advices"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mAdvice Load (0.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices" ORDER BY "advices"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (1.0ms)[0m  [1m[34mSELECT "tags".* FROM "tags" WHERE "tags"."advice_id" = ? LIMIT ?[0m  [["advice_id", 1], ["LIMIT", 11]]

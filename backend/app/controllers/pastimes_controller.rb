@@ -1,0 +1,2 @@
+class PastimesController < ApplicationController
+end
