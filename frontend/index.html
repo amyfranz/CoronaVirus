@@ -3,20 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <script defer src="js/app.js"></script>
+    <<<<<<< HEAD
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <script defer src="js/animation.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-    <form class="search-form">
-      <input type="text" class="search" placeholder="City or State" />
-      <ul class="suggestions"></ul>
-    </form>
-    <div class="map" id="map"></div>
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="medical.html" class="nav-link">Medical Tips</a>
+            </li>
+            <li class="nav-item">
+              <a href="pastime.html" class="nav-link">Home Activities</a>
+            </li>
+            <li class="nav-item">
+              <a href="donate.html" class="nav-link">Donate</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="circle circle-small">
+        <img src="images/circle-small.png" alt="" />
+      </div>
+      <div class="circle circle-large">
+        <img src="images/circle-large.png" alt="" />
+      </div>
+
+      <div class="container">
+        <div class="content">
+          <div class="text">
+            <h1>
+              Latest <br />
+              COVID-19 <span>Statistics</span>
+            </h1>
+            <h5>Global statistics for Coronavirus</h5>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusantium animi blanditiis cumque ea, error esse eveniet harum
+              illo magnam minus natus neque optio placeat quibusdam ratione
+              saepe sint tenetur voluptas!
+            </p>
+          </div>
+          <div class="cv-wrapper">
+            <img src="images/cv.svg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay">
+        <div class="layer layer-1"></div>
+        <div class="layer layer-2"></div>
+        <div class="layer layer-3"></div>
+      </div>
+    </section>
+    <div class="newsletter">
+      <h3>Subscribe To Our <span>Newsletter</span></h3>
+      <input type="email" placeholder="Email..." />
+      <button class="btn" type="submit">Subscribe</button>
+    </div>
+    <div class="info">
+      <div class="map">
+        <form class="search-form">
+          <input type="text" class="search" placeholder="City or State" />
+          <ul class="suggestions"></ul>
+        </form>
+        <div class="map" id="map"></div>
+      </div>
+      <div class="map-info"></div>
+    </div>
+
+    <footer>
+      <p>NOOB_DEV Production &copy;</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.5/gsap.min.js"></script>
   </body>
 </html>
