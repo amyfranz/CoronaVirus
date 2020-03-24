@@ -148,5 +148,5 @@ const searchBar = () => {
     suggest.innerHTML = html;
   };
 };
-createMap();
-// searchBar();
+// createMap();
+searchBar();
