@@ -1,4 +1,4 @@
-const fetchData = (URL, option = nil) => {
+const fetchData = (URL, option = null) => {
   if (option) {
     return fetch(URL, option).then(res => res.json());
   } else {
@@ -91,7 +91,7 @@ const createMap = () => {
 const addCountryMarker = (countryData, map) => {
   const nameCountry = countryData["country_name"];
   fetchData(
-    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=4df023b44de34d0fa736a9c2758c8581`
+    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=003d4d4170f54726a615eeb07ff54d3b`
   ).then(data => {
     data["results"][0]["geometry"]["lat"];
     data["results"][0]["geometry"]["lng"];
@@ -141,7 +141,6 @@ const searchBar = () => {
     const matchArr = filterCities(event.target.value);
     const html = matchArr
       .map(place => {
-        const regex = new RegExp(event.target.value, "gi");
         const cityName = place.country_name;
         return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
       })
@@ -152,4 +151,4 @@ const searchBar = () => {
 
 searchBar();
 
-createMap();
+// createMap();
