@@ -138,14 +138,18 @@ const searchBar = () => {
   search.addEventListener("keyup", event => displayRes(event));
 
   const displayRes = event => {
-    const matchArr = filterCities(event.target.value);
-    const html = matchArr
-      .map(place => {
-        const cityName = place.country_name;
-        return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
-      })
-      .join("");
-    suggest.innerHTML = html;
+    if (search.value === "") {
+      suggest.innerHTML = "";
+    } else {
+      const matchArr = filterCities(event.target.value);
+      const html = matchArr
+        .map(place => {
+          const cityName = place.country_name;
+          return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
+        })
+        .join("");
+      suggest.innerHTML = html;
+    }
   };
 };
 createMap();
