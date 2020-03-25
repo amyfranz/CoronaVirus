@@ -3,10 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <script defer src="js/app.js"></script>
-    <link
-      rel="stylesheet"
-      href="css/index.css"
-    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -83,14 +81,17 @@
       <button class="btn" type="submit">Subscribe</button>
     </div>
     <div class="info">
+      <h1 class="info-header">Statistics</h1>
       <div class="map">
+        <h1>Enter Location</h1>
         <form class="search-form">
-          <input type="text" class="search" placeholder="City or State" />
-          <ul class="suggestions"></ul>
+          <input type="text" class="search" placeholder="Country" />
         </form>
-        <div class="map" id="map"></div>
+        <div class="map-container">
+          <div class="map-info"><ul class="suggestions"></ul></div>
+          <div class="map" id="map"></div>
+        </div>
       </div>
-      <div class="map-info"></div>
     </div>
 
     <footer>
