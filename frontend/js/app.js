@@ -6,6 +6,9 @@ const fetchData = (URL, option = null) => {
   }
 };
 
+console.log("hi");
+fetchData("https://localhost:3000/advices").then(data => console.log(data));
+
 const createMap = () => {
   const map = L.map("map").setView([0, 0], 2);
   L.tileLayer(

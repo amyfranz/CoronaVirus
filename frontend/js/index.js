@@ -6,6 +6,8 @@ const fetchData = (URL, option = null) => {
   }
 };
 
+
+
 // const createMap = () => {
 //   const map = L.map("map").setView([0, 0], 2);
 //   L.tileLayer(
