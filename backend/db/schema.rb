@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
   end
 
   create_table "advices", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.string "video"
     t.string "image"
@@ -32,8 +31,10 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
 
   create_table "pastimes", force: :cascade do |t|
     t.string "name"
+    t.string "summary"
     t.text "content"
     t.string "title"
+    t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

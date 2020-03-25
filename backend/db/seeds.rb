@@ -26,11 +26,10 @@ Advice.create(title: "Myth busters" , content: "<h4>COVID-19 virus can be transm
 # AdviceTag.create(advice_id: 2, tag_id: 2)
 # AdviceTag.create(advice_id: 2, tag_id: 3)
 
-Pastime.create(name: "stringfgg", content: "teqweqweqxt", title: "strinxcvcxv vcxvg")
-Pastime.create(name: "stringggg", content: "tefsdfsxt", title: "striqqqqqng")
-Pastime.create(name: "strinfddfdg", content: "tesdfsdxt", title: "striwwwwng")
-Pastime.create(name: "strindsdsg", content: "teccxzxt", title: "strindasdasdg")
-Pastime.create(name: "strinasdqweg", content: "qweqwetext", title: "strindddddddg")
+Pastime.create(name: "stringfgg", content: "teqweqweqxt", title: "Quarantine Properly", summary: 'sgdjsahgfj', img_url: 'stock-image.jpg')
+Pastime.create(name: "stringggg", content: "tefsdfsxt", title: "Don't Panic Buy", summary: 'sgdjsahgfj', img_url: 'panic-buy.jpg')
+Pastime.create(name: "strinfddfdg", content: "tesdfsdxt", title: "Exercise Regularly", summary: 'sgdjsahgfj', img_url: 'exercise.jpg')
+
 
 Rating.create(rate: 5, pastime_id: 1)
 Rating.create(rate: 4, pastime_id: 3)

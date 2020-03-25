@@ -15,8 +15,10 @@ Bundler.require(*Rails.groups)
     # the framework and any gems in your application.
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-          origins '*'
-          resource '*', headers: :any, methods: [:get, :post, :patch, :destory]
-      end
+         origins '*'
+         resource '*', :headers => :any, :methods => [:get, :post, :options]
+       end
     end
   end
+
+

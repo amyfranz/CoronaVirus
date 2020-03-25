@@ -1348,6 +1348,7 @@ Processing by TagsController#index as HTML
 Completed 200 OK in 92ms (Views: 87.5ms | ActiveRecord: 2.3ms | Allocations: 11270)
 
 
+<<<<<<< HEAD
   [1m[35m (42.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
   [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
@@ -1360,10 +1361,25 @@ Migrating to CreateAdvices (20200324111643)
 Migrating to CreateTags (20200324111859)
   [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
   [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "advice_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_491f9bd7e2"
+=======
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdvices (20200324111643)
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "advices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "video" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111643"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTags (20200324111859)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "advice_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_491f9bd7e2"
+>>>>>>> activity-logic
 FOREIGN KEY ("advice_id")
   REFERENCES "advices" ("id")
 )[0m
   [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_tags_on_advice_id" ON "tags" ("advice_id")[0m
+<<<<<<< HEAD
   [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111859"]]
   [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
 Migrating to CreatePastimes (20200324112846)
@@ -2080,6 +2096,277 @@ Started GET "/adivces" for ::1 at 2020-03-25 11:34:44 +0000
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   
 ActionController::RoutingError (No route matches [GET] "/adivces"):
+=======
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111859"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePastimes (20200324112846)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "pastimes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "summary" varchar, "content" text, "title" varchar, "img_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112846"]]
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRatings (20200324112959)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "rate" integer, "pastime_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c446f2b479"
+FOREIGN KEY ("pastime_id")
+  REFERENCES "pastimes" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_ratings_on_pastime_id" ON "ratings" ("pastime_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112959"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-25 13:34:17.180746"], ["updated_at", "2020-03-25 13:34:17.180746"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (2.5ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentcontentcontent"], ["video", "kkkkkkkk"], ["image", "njnjn"], ["created_at", "2020-03-25 14:35:01.006128"], ["updated_at", "2020-03-25 14:35:01.006128"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.5ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentckjhkjhkjhkjhkt"], ["video", "uuuuuu"], ["image", "iijijij"], ["created_at", "2020-03-25 14:35:01.014404"], ["updated_at", "2020-03-25 14:35:01.014404"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentkjhkjhkjhkjntent"], ["video", "kkkkkyyykkk"], ["image", "drdrdrdr"], ["created_at", "2020-03-25 14:35:01.020000"], ["updated_at", "2020-03-25 14:35:01.020000"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhentcontent"], ["video", "kkyyyyyyykkkkk"], ["image", "tftf"], ["created_at", "2020-03-25 14:35:01.025703"], ["updated_at", "2020-03-25 14:35:01.025703"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhkent"], ["video", "rrrrrrrrr"], ["image", "gygyyg"], ["created_at", "2020-03-25 14:35:01.030924"], ["updated_at", "2020-03-25 14:35:01.030924"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (1.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go onvbnvbnvut"], ["advice_id", 1], ["created_at", "2020-03-25 14:35:01.139473"], ["updated_at", "2020-03-25 14:35:01.139473"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.7ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont govnbvnb out"], ["advice_id", 2], ["created_at", "2020-03-25 14:35:01.152665"], ["updated_at", "2020-03-25 14:35:01.152665"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go nbcnbvnbvout"], ["advice_id", 2], ["created_at", "2020-03-25 14:35:01.162777"], ["updated_at", "2020-03-25 14:35:01.162777"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go ovcxvxcvcxut"], ["advice_id", 3], ["created_at", "2020-03-25 14:35:01.173038"], ["updated_at", "2020-03-25 14:35:01.173038"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont ffffffffgo out"], ["advice_id", 3], ["created_at", "2020-03-25 14:35:01.179679"], ["updated_at", "2020-03-25 14:35:01.179679"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dasdas"], ["advice_id", 1], ["created_at", "2020-03-25 14:35:01.186077"], ["updated_at", "2020-03-25 14:35:01.186077"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont gdasdasdsao out"], ["advice_id", 5], ["created_at", "2020-03-25 14:35:01.194886"], ["updated_at", "2020-03-25 14:35:01.194886"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "donteqweqweqweqw go out"], ["advice_id", 4], ["created_at", "2020-03-25 14:35:01.203450"], ["updated_at", "2020-03-25 14:35:01.203450"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.7ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentcontentcontent"], ["video", "kkkkkkkk"], ["image", "njnjn"], ["created_at", "2020-03-25 14:35:23.119852"], ["updated_at", "2020-03-25 14:35:23.119852"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.6ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentckjhkjhkjhkjhkt"], ["video", "uuuuuu"], ["image", "iijijij"], ["created_at", "2020-03-25 14:35:23.126350"], ["updated_at", "2020-03-25 14:35:23.126350"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.5ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "contentkjhkjhkjhkjntent"], ["video", "kkkkkyyykkk"], ["image", "drdrdrdr"], ["created_at", "2020-03-25 14:35:23.136934"], ["updated_at", "2020-03-25 14:35:23.136934"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.5ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhentcontent"], ["video", "kkyyyyyyykkkkk"], ["image", "tftf"], ["created_at", "2020-03-25 14:35:23.143454"], ["updated_at", "2020-03-25 14:35:23.143454"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.5ms)[0m  [1m[32mINSERT INTO "advices" ("content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["content", "cokjhkjhkjhkent"], ["video", "rrrrrrrrr"], ["image", "gygyyg"], ["created_at", "2020-03-25 14:35:23.149752"], ["updated_at", "2020-03-25 14:35:23.149752"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go onvbnvbnvut"], ["advice_id", 1], ["created_at", "2020-03-25 14:35:23.170581"], ["updated_at", "2020-03-25 14:35:23.170581"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont govnbvnb out"], ["advice_id", 2], ["created_at", "2020-03-25 14:35:23.177677"], ["updated_at", "2020-03-25 14:35:23.177677"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.5ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go nbcnbvnbvout"], ["advice_id", 2], ["created_at", "2020-03-25 14:35:23.201405"], ["updated_at", "2020-03-25 14:35:23.201405"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont go ovcxvxcvcxut"], ["advice_id", 3], ["created_at", "2020-03-25 14:35:23.208903"], ["updated_at", "2020-03-25 14:35:23.208903"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont ffffffffgo out"], ["advice_id", 3], ["created_at", "2020-03-25 14:35:23.216071"], ["updated_at", "2020-03-25 14:35:23.216071"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dasdas"], ["advice_id", 1], ["created_at", "2020-03-25 14:35:23.223498"], ["updated_at", "2020-03-25 14:35:23.223498"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "dont gdasdasdsao out"], ["advice_id", 5], ["created_at", "2020-03-25 14:35:23.230367"], ["updated_at", "2020-03-25 14:35:23.230367"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "donteqweqweqweqw go out"], ["advice_id", 4], ["created_at", "2020-03-25 14:35:23.249718"], ["updated_at", "2020-03-25 14:35:23.249718"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.9ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "stringfgg"], ["summary", "sgdjsahgfj"], ["content", "teqweqweqxt"], ["title", "Quarantine Properly"], ["img_url", "stock-image.jpg"], ["created_at", "2020-03-25 14:35:23.268289"], ["updated_at", "2020-03-25 14:35:23.268289"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "stringggg"], ["summary", "sgdjsahgfj"], ["content", "tefsdfsxt"], ["title", "Don't Panic Buy"], ["img_url", "panic-buy.jpg"], ["created_at", "2020-03-25 14:35:23.305720"], ["updated_at", "2020-03-25 14:35:23.305720"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "strinfddfdg"], ["summary", "sgdjsahgfj"], ["content", "tesdfsdxt"], ["title", "Exercise Regularly"], ["img_url", "exercise.jpg"], ["created_at", "2020-03-25 14:35:23.312307"], ["updated_at", "2020-03-25 14:35:23.312307"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRating Create (0.6ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 5], ["pastime_id", 1], ["created_at", "2020-03-25 14:35:23.330860"], ["updated_at", "2020-03-25 14:35:23.330860"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRating Create (0.7ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 4], ["pastime_id", 3], ["created_at", "2020-03-25 14:35:23.342573"], ["updated_at", "2020-03-25 14:35:23.342573"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.5ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 14:35:23.352247"], ["updated_at", "2020-03-25 14:35:23.352247"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.5ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 1], ["pastime_id", 2], ["created_at", "2020-03-25 14:35:23.360394"], ["updated_at", "2020-03-25 14:35:23.360394"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.4ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 14:35:23.367846"], ["updated_at", "2020-03-25 14:35:23.367846"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for ::1 at 2020-03-25 14:36:26 +0000
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 20.2ms | Allocations: 480)
+Completed 200 OK in 53ms (Views: 33.6ms | ActiveRecord: 0.0ms | Allocations: 3067)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:36:31 +0000
+Processing by PastimesController#index as HTML
+  [1m[36mPastime Load (4.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 45ms (Views: 25.3ms | ActiveRecord: 6.1ms | Allocations: 8286)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:43:27 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (3.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 3.5ms | Allocations: 1438)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:44:21 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms | Allocations: 1419)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:52:08 +0000
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.7ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 17.3ms | ActiveRecord: 1.4ms | Allocations: 8023)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:57:29 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.2ms | Allocations: 1420)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 14:57:46 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 1420)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:04:13 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (1.0ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 1.0ms | Allocations: 1438)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:06:01 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 1405)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:06:13 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.1ms | Allocations: 1405)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:06:36 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 1405)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:16:00 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (2.0ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 2.0ms | Allocations: 1438)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:16:44 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 1405)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:17:04 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.2ms | Allocations: 1405)
+
+
+Started GET "/" for ::1 at 2020-03-25 15:36:18 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 141.4ms | Allocations: 315)
+Completed 200 OK in 153ms (Views: 148.2ms | ActiveRecord: 0.0ms | Allocations: 1951)
+
+
+Started GET "/admin/" for ::1 at 2020-03-25 15:36:22 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/admin"):
+>>>>>>> activity-logic
   
 actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
 web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
@@ -2112,6 +2399,7 @@ puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
 puma (4.3.3) lib/puma/server.rb:472:in `process_client'
 puma (4.3.3) lib/puma/server.rb:328:in `block in run'
 puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+<<<<<<< HEAD
 Started GET "/advices" for ::1 at 2020-03-25 11:34:54 +0000
 Processing by AdvicesController#index as HTML
   [1m[36mAdvice Load (1.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
@@ -2203,6 +2491,56 @@ Processing by AdvicesController#index as */*
   [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
   ↳ app/controllers/advices_controller.rb:4:in `index'
 Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.3ms | Allocations: 3537)
+=======
+Started GET "/advices" for ::1 at 2020-03-25 15:36:23 +0000
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (2.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 36ms (Views: 17.9ms | ActiveRecord: 4.5ms | Allocations: 7462)
+>>>>>>> activity-logic
+
+
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdviceTags (20200325110037)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "advice_tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "advice_id" integer NOT NULL, "tag_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6f999c69f6"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+, CONSTRAINT "fk_rails_0af0c5217b"
+FOREIGN KEY ("tag_id")
+  REFERENCES "tags" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_advice_id" ON "advice_tags" ("advice_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_tag_id" ON "advice_tags" ("tag_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200325110037"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-03-25 15:53:06 +0000
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 35.7ms | Allocations: 306)
+Completed 200 OK in 89ms (Views: 45.3ms | ActiveRecord: 0.0ms | Allocations: 1899)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:53:12 +0000
+Processing by PastimesController#index as HTML
+  [1m[36mPastime Load (1.4ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 56ms (Views: 29.4ms | ActiveRecord: 3.8ms | Allocations: 8737)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:54:33 +0000
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (1.0ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 55ms (Views: 20.7ms | ActiveRecord: 2.0ms | Allocations: 8470)
 
 
   [1m[35m (3.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
