@@ -12,8 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_03_25_110037) do
 
+  create_table "advice_tags", force: :cascade do |t|
+    t.integer "advice_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["advice_id"], name: "index_advice_tags_on_advice_id"
+    t.index ["tag_id"], name: "index_advice_tags_on_tag_id"
+  end
+
   create_table "advices", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.string "video"
     t.string "image"
@@ -38,5 +46,17 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pastime_id"], name: "index_ratings_on_pastime_id"
   end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "advice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["advice_id"], name: "index_tags_on_advice_id"
+  end
+
+  add_foreign_key "advice_tags", "advices"
+  add_foreign_key "advice_tags", "tags"
   add_foreign_key "ratings", "pastimes"
+  add_foreign_key "tags", "advices"
 end

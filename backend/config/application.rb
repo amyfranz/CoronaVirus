@@ -20,5 +20,5 @@ Bundler.require(*Rails.groups)
        end
     end
   end
-end
+
 

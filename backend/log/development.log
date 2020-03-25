@@ -2500,3 +2500,46 @@ Completed 200 OK in 36ms (Views: 17.9ms | ActiveRecord: 4.5ms | Allocations: 746
 >>>>>>> activity-logic
 
 
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdviceTags (20200325110037)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "advice_tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "advice_id" integer NOT NULL, "tag_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6f999c69f6"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+, CONSTRAINT "fk_rails_0af0c5217b"
+FOREIGN KEY ("tag_id")
+  REFERENCES "tags" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_advice_id" ON "advice_tags" ("advice_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_tag_id" ON "advice_tags" ("tag_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200325110037"]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-03-25 15:53:06 +0000
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/benhernandez/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 35.7ms | Allocations: 306)
+Completed 200 OK in 89ms (Views: 45.3ms | ActiveRecord: 0.0ms | Allocations: 1899)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:53:12 +0000
+Processing by PastimesController#index as HTML
+  [1m[36mPastime Load (1.4ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 56ms (Views: 29.4ms | ActiveRecord: 3.8ms | Allocations: 8737)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-25 15:54:33 +0000
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (1.0ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 55ms (Views: 20.7ms | ActiveRecord: 2.0ms | Allocations: 8470)
+
+
