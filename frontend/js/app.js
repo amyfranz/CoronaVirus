@@ -5,7 +5,6 @@ const fetchData = (URL, option = null) => {
     return fetch(URL).then(res => res.json());
   }
 };
-
 console.log("hi");
 fetchData("https://localhost:3000/advices").then(data => console.log(data));
 
