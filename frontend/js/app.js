@@ -6,6 +6,9 @@ const fetchData = (URL, option = null) => {
   }
 };
 
+console.log("hi");
+fetchData("https://localhost:3000/advices").then(data => console.log(data));
+
 const createMap = () => {
   const map = L.map("map").setView([0, 0], 2);
   L.tileLayer(
@@ -91,7 +94,7 @@ const createMap = () => {
 const addCountryMarker = (countryData, map) => {
   const nameCountry = countryData["country_name"];
   fetchData(
-    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=003d4d4170f54726a615eeb07ff54d3b`
+    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=e4c53fec8cd84372a9a23cfa112506ad`
   ).then(data => {
     data["results"][0]["geometry"]["lat"];
     data["results"][0]["geometry"]["lng"];
@@ -138,14 +141,18 @@ const searchBar = () => {
   search.addEventListener("keyup", event => displayRes(event));
 
   const displayRes = event => {
-    const matchArr = filterCities(event.target.value);
-    const html = matchArr
-      .map(place => {
-        const cityName = place.country_name;
-        return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
-      })
-      .join("");
-    suggest.innerHTML = html;
+    if (search.value === "") {
+      suggest.innerHTML = "";
+    } else {
+      const matchArr = filterCities(event.target.value);
+      const html = matchArr
+        .map(place => {
+          const cityName = place.country_name;
+          return `<li><span class="name">${cityName}:</span><span class="cases"> ${place["cases"]} cases</span></li>`;
+        })
+        .join("");
+      suggest.innerHTML = html;
+    }
   };
 };
 createMap();

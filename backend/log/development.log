@@ -1348,3 +1348,860 @@ Processing by TagsController#index as HTML
 Completed 200 OK in 92ms (Views: 87.5ms | ActiveRecord: 2.3ms | Allocations: 11270)
 
 
+  [1m[35m (42.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdvices (20200324111643)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "advices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "video" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111643"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTags (20200324111859)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "advice_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_491f9bd7e2"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_tags_on_advice_id" ON "tags" ("advice_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111859"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePastimes (20200324112846)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "pastimes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "content" text, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112846"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRatings (20200324112959)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "rate" integer, "pastime_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c446f2b479"
+FOREIGN KEY ("pastime_id")
+  REFERENCES "pastimes" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_ratings_on_pastime_id" ON "ratings" ("pastime_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112959"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-24 20:36:29.583217"], ["updated_at", "2020-03-24 20:36:29.583217"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (28.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (1.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "When to use a mask"], ["content", "If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.<br>Wear a mask if you are coughing or sneezing.<br>Masks are effective only when used in combination with frequent hand-cleaning with alcohol-based hand rub or soap and water.<br>If you wear a mask, then you must know how to use it and dispose of it properly.<br>Before putting on a mask, clean hands with alcohol-based hand rub or soap and water.<br>Cover mouth and nose with mask and make sure there are no gaps between your face and the mask.<br>Avoid touching the mask while using it; if you do, clean your hands with alcohol-based hand rub or soap and water.<br>Replace the mask with a new one as soon as it is damp and do not re-use single-use masks.<br>To remove the mask: remove it from behind (do not touch the front of mask); <br>discard immediately in a closed bin; <br>clean hands with alcohol-based hand rub or soap and water."], ["video", "https://youtu.be/M4olt47pr_o"], ["image", "images/masks"], ["created_at", "2020-03-24 21:05:40.797231"], ["updated_at", "2020-03-24 21:05:40.797231"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Basic protective measures against the new coronavirus"], ["content", "Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local public health authority. Most people who become infected experience mild illness and recover, but it can be more severe for others. <br>Take care of your health and protect others by doing the following:<br><h4>Wash your hands frequently</h4><br>Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.<br><h6>Why?</h6> Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>Maintain social distancing<br>Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.<br><h6>Why?</h6> When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.Avoid touching eyes, nose and mouth<br><h6>Why?</h6> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.<br><h5>Practice respiratory hygiene</h5><br>Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.<br><h6>Why?</h6> Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.<br><h5>If you have fever, cough and difficulty breathing, seek medical care early</h5><br>Stay home if you feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.<br><h6>Why?</h6> National and local authorities will have the most up to date information on the situation in your area. Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also protect you and help prevent spread of viruses and other infections.<h5>Stay informed and follow advice given by your healthcare provider</h5><br>Stay informed on the latest developments about COVID-19. Follow advice given by your healthcare provider, your national and local public health authority or your employer on how to protect yourself and others from COVID-19.<br><h6>Why?</h6> National and local authorities will have the most up to date information on whether COVID-19 is spreading in your area. They are best placed to advise on what people in your area should be doing to protect themselves.<br><h4>Protection measures for persons who are in or have recently visited (past 14 days) areas where COVID-19 is spreading</h4><br>Follow the guidance outlined above.<br>Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover. Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.<br>If you develop fever, cough and difficulty breathing, seek medical advice promptly as this may be due to a respiratory infection or other serious condition. Call in advance and tell your provider of any recent travel or contact with travelers. Why? Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also help to prevent possible spread of COVID-19 and other viruses."], ["video", "https://youtu.be/bPITHEiFWLc"], ["image", "images/general"], ["created_at", "2020-03-24 21:05:40.802836"], ["updated_at", "2020-03-24 21:05:40.802836"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.2ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Myth busters"], ["content", "<h4>COVID-19 virus can be transmitted in areas with hot and humid climates</h4><br>From the evidence so far, the COVID-19 virus can be transmitted in ALL AREAS, including areas with hot and humid weather. Regardless of climate, adopt protective measures if you live in, or travel to an area reporting COVID-19. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<br><h4>Cold weather and snow CANNOT kill the new coronavirus.</h4><br>There is no reason to believe that cold weather can kill the new coronavirus or other diseases. The normal human body temperature remains around 36.5°C to 37°C, regardless of the external temperature or weather. The most effective way to protect yourself against the new coronavirus is by frequently cleaning your hands with alcohol-based hand rub or washing them with soap and water.<br><h4>Taking a hot bath does not prevent the new coronavirus disease</h4><br>Taking a hot bath will not prevent you from catching COVID-19. Your normal body temperature remains around 36.5°C to 37°C, regardless of the temperature of your bath or shower. Actually, taking a hot bath with extremely hot water can be harmful, as it can burn you. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<h4>The new coronavirus CANNOT be transmitted through mosquito bites.<h4><br>To date there has been no information nor evidence to suggest that the new coronavirus could be transmitted by mosquitoes. The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. To protect yourself, clean your hands frequently with an alcohol-based hand rub or wash them with soap and water. Also, avoid close contact with anyone who is coughing and sneezing.<br><h4>Are hand dryers effective in killing the new coronavirus?</h4><br>No. Hand dryers are not effective in killing the 2019-nCoV. To protect yourself against the new coronavirus, you should frequently clean your hands with an alcohol-based hand rub or wash them with soap and water. Once your hands are cleaned, you should dry them thoroughly by using paper towels or a warm air dryer.<br><h4>Can an ultraviolet disinfection lamp kill the new coronavirus?</h4><br>UV lamps should not be used to sterilize hands or other areas of skin as UV radiation can cause skin irritation."], ["video", ""], ["image", "images/Myth"], ["created_at", "2020-03-24 21:05:40.805991"], ["updated_at", "2020-03-24 21:05:40.805991"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.8ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "mask"], ["advice_id", 1], ["created_at", "2020-03-24 21:05:41.074695"], ["updated_at", "2020-03-24 21:05:41.074695"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 1], ["created_at", "2020-03-24 21:05:41.080945"], ["updated_at", "2020-03-24 21:05:41.080945"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 1], ["created_at", "2020-03-24 21:05:41.087927"], ["updated_at", "2020-03-24 21:05:41.087927"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "myths"], ["advice_id", 3], ["created_at", "2020-03-24 21:05:41.092309"], ["updated_at", "2020-03-24 21:05:41.092309"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "believe it or not"], ["advice_id", 3], ["created_at", "2020-03-24 21:05:41.096114"], ["updated_at", "2020-03-24 21:05:41.096114"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 3], ["created_at", "2020-03-24 21:05:41.100146"], ["updated_at", "2020-03-24 21:05:41.100146"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "general advice"], ["advice_id", 2], ["created_at", "2020-03-24 21:05:41.104348"], ["updated_at", "2020-03-24 21:05:41.104348"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 2], ["created_at", "2020-03-24 21:05:41.108130"], ["updated_at", "2020-03-24 21:05:41.108130"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 2], ["created_at", "2020-03-24 21:05:41.112265"], ["updated_at", "2020-03-24 21:05:41.112265"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringfgg"], ["content", "teqweqweqxt"], ["title", "strinxcvcxv vcxvg"], ["created_at", "2020-03-24 21:05:41.163725"], ["updated_at", "2020-03-24 21:05:41.163725"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringggg"], ["content", "tefsdfsxt"], ["title", "striqqqqqng"], ["created_at", "2020-03-24 21:05:41.168075"], ["updated_at", "2020-03-24 21:05:41.168075"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinfddfdg"], ["content", "tesdfsdxt"], ["title", "striwwwwng"], ["created_at", "2020-03-24 21:05:41.185508"], ["updated_at", "2020-03-24 21:05:41.185508"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strindsdsg"], ["content", "teccxzxt"], ["title", "strindasdasdg"], ["created_at", "2020-03-24 21:05:41.188592"], ["updated_at", "2020-03-24 21:05:41.188592"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinasdqweg"], ["content", "qweqwetext"], ["title", "strindddddddg"], ["created_at", "2020-03-24 21:05:41.191568"], ["updated_at", "2020-03-24 21:05:41.191568"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRating Create (0.6ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 5], ["pastime_id", 1], ["created_at", "2020-03-24 21:05:41.245702"], ["updated_at", "2020-03-24 21:05:41.245702"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 4], ["pastime_id", 3], ["created_at", "2020-03-24 21:05:41.251022"], ["updated_at", "2020-03-24 21:05:41.251022"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-24 21:05:41.255502"], ["updated_at", "2020-03-24 21:05:41.255502"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 1], ["pastime_id", 2], ["created_at", "2020-03-24 21:05:41.259869"], ["updated_at", "2020-03-24 21:05:41.259869"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-24 21:05:41.263573"], ["updated_at", "2020-03-24 21:05:41.263573"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-03-24 21:07:36 +0000
+  [1m[35m (27.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/amy/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/amy/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 65.7ms | Allocations: 481)
+Completed 200 OK in 238ms (Views: 149.9ms | ActiveRecord: 0.0ms | Allocations: 2792)
+
+
+Started GET "/advice" for ::1 at 2020-03-24 21:07:49 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/advice"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/advices" for ::1 at 2020-03-24 21:08:03 +0000
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (0.7ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 40ms (Views: 6.8ms | ActiveRecord: 1.2ms | Allocations: 7568)
+
+
+Started GET "/tags" for ::1 at 2020-03-24 21:08:40 +0000
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 107ms (Views: 55.5ms | ActiveRecord: 1.2ms | Allocations: 17637)
+
+
+Started GET "/tags" for ::1 at 2020-03-24 21:22:54 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TagsController#index as */*
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 12.1ms | ActiveRecord: 0.9ms | Allocations: 11752)
+
+
+Started GET "/tags" for ::1 at 2020-03-24 21:30:32 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 26.0ms | ActiveRecord: 0.8ms | Allocations: 11797)
+
+
+Started GET "/tags" for ::1 at 2020-03-24 21:34:13 +0000
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.1ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 12.4ms | ActiveRecord: 0.4ms | Allocations: 11757)
+
+
+Started GET "/tags" for ::1 at 2020-03-24 21:34:28 +0000
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 11.9ms | ActiveRecord: 0.5ms | Allocations: 11772)
+
+
+Started GET "/" for ::1 at 2020-03-25 10:41:26 +0000
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/amy/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/amy/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 17.8ms | Allocations: 307)
+Completed 200 OK in 36ms (Views: 24.7ms | ActiveRecord: 0.0ms | Allocations: 1573)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 10:41:31 +0000
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (0.5ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 11.7ms | ActiveRecord: 1.1ms | Allocations: 8086)
+
+
+Started GET "/tags" for ::1 at 2020-03-25 10:42:38 +0000
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (1.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 95ms (Views: 83.1ms | ActiveRecord: 2.2ms | Allocations: 18371)
+
+
+Started GET "/tags" for ::1 at 2020-03-25 10:42:50 +0000
+Processing by TagsController#index as */*
+  [1m[36mTag Load (0.3ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 63ms (Views: 61.0ms | ActiveRecord: 1.1ms | Allocations: 11704)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 10:43:15 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.2ms | Allocations: 1523)
+
+
+Started GET "/tags" for ::1 at 2020-03-25 10:56:17 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 2622)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: tags):
+  
+app/controllers/tags_controller.rb:4:in `index'
+  [1m[35m (5.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdvices (20200324111643)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "advices" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "video" varchar, "image" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111643"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateTags (20200324111859)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "advice_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_491f9bd7e2"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_tags_on_advice_id" ON "tags" ("advice_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324111859"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreatePastimes (20200324112846)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "pastimes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "content" text, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112846"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateRatings (20200324112959)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ratings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "rate" integer, "pastime_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c446f2b479"
+FOREIGN KEY ("pastime_id")
+  REFERENCES "pastimes" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_ratings_on_pastime_id" ON "ratings" ("pastime_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200324112959"]]
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-25 10:56:43.614287"], ["updated_at", "2020-03-25 10:56:43.614287"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "When to use a mask"], ["content", "If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.<br>Wear a mask if you are coughing or sneezing.<br>Masks are effective only when used in combination with frequent hand-cleaning with alcohol-based hand rub or soap and water.<br>If you wear a mask, then you must know how to use it and dispose of it properly.<br>Before putting on a mask, clean hands with alcohol-based hand rub or soap and water.<br>Cover mouth and nose with mask and make sure there are no gaps between your face and the mask.<br>Avoid touching the mask while using it; if you do, clean your hands with alcohol-based hand rub or soap and water.<br>Replace the mask with a new one as soon as it is damp and do not re-use single-use masks.<br>To remove the mask: remove it from behind (do not touch the front of mask); <br>discard immediately in a closed bin; <br>clean hands with alcohol-based hand rub or soap and water."], ["video", "https://youtu.be/M4olt47pr_o"], ["image", "images/masks"], ["created_at", "2020-03-25 10:56:55.966482"], ["updated_at", "2020-03-25 10:56:55.966482"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Basic protective measures against the new coronavirus"], ["content", "Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local public health authority. Most people who become infected experience mild illness and recover, but it can be more severe for others. <br>Take care of your health and protect others by doing the following:<br><h4>Wash your hands frequently</h4><br>Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.<br><h6>Why?</h6> Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>Maintain social distancing<br>Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.<br><h6>Why?</h6> When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.Avoid touching eyes, nose and mouth<br><h6>Why?</h6> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.<br><h5>Practice respiratory hygiene</h5><br>Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.<br><h6>Why?</h6> Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.<br><h5>If you have fever, cough and difficulty breathing, seek medical care early</h5><br>Stay home if you feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.<br><h6>Why?</h6> National and local authorities will have the most up to date information on the situation in your area. Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also protect you and help prevent spread of viruses and other infections.<h5>Stay informed and follow advice given by your healthcare provider</h5><br>Stay informed on the latest developments about COVID-19. Follow advice given by your healthcare provider, your national and local public health authority or your employer on how to protect yourself and others from COVID-19.<br><h6>Why?</h6> National and local authorities will have the most up to date information on whether COVID-19 is spreading in your area. They are best placed to advise on what people in your area should be doing to protect themselves.<br><h4>Protection measures for persons who are in or have recently visited (past 14 days) areas where COVID-19 is spreading</h4><br>Follow the guidance outlined above.<br>Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover. Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.<br>If you develop fever, cough and difficulty breathing, seek medical advice promptly as this may be due to a respiratory infection or other serious condition. Call in advance and tell your provider of any recent travel or contact with travelers. Why? Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also help to prevent possible spread of COVID-19 and other viruses."], ["video", "https://youtu.be/bPITHEiFWLc"], ["image", "images/general"], ["created_at", "2020-03-25 10:56:55.970770"], ["updated_at", "2020-03-25 10:56:55.970770"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Myth busters"], ["content", "<h4>COVID-19 virus can be transmitted in areas with hot and humid climates</h4><br>From the evidence so far, the COVID-19 virus can be transmitted in ALL AREAS, including areas with hot and humid weather. Regardless of climate, adopt protective measures if you live in, or travel to an area reporting COVID-19. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<br><h4>Cold weather and snow CANNOT kill the new coronavirus.</h4><br>There is no reason to believe that cold weather can kill the new coronavirus or other diseases. The normal human body temperature remains around 36.5°C to 37°C, regardless of the external temperature or weather. The most effective way to protect yourself against the new coronavirus is by frequently cleaning your hands with alcohol-based hand rub or washing them with soap and water.<br><h4>Taking a hot bath does not prevent the new coronavirus disease</h4><br>Taking a hot bath will not prevent you from catching COVID-19. Your normal body temperature remains around 36.5°C to 37°C, regardless of the temperature of your bath or shower. Actually, taking a hot bath with extremely hot water can be harmful, as it can burn you. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<h4>The new coronavirus CANNOT be transmitted through mosquito bites.<h4><br>To date there has been no information nor evidence to suggest that the new coronavirus could be transmitted by mosquitoes. The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. To protect yourself, clean your hands frequently with an alcohol-based hand rub or wash them with soap and water. Also, avoid close contact with anyone who is coughing and sneezing.<br><h4>Are hand dryers effective in killing the new coronavirus?</h4><br>No. Hand dryers are not effective in killing the 2019-nCoV. To protect yourself against the new coronavirus, you should frequently clean your hands with an alcohol-based hand rub or wash them with soap and water. Once your hands are cleaned, you should dry them thoroughly by using paper towels or a warm air dryer.<br><h4>Can an ultraviolet disinfection lamp kill the new coronavirus?</h4><br>UV lamps should not be used to sterilize hands or other areas of skin as UV radiation can cause skin irritation."], ["video", ""], ["image", "images/Myth"], ["created_at", "2020-03-25 10:56:55.974618"], ["updated_at", "2020-03-25 10:56:55.974618"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "mask"], ["advice_id", 1], ["created_at", "2020-03-25 10:56:55.987298"], ["updated_at", "2020-03-25 10:56:55.987298"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 1], ["created_at", "2020-03-25 10:56:55.991175"], ["updated_at", "2020-03-25 10:56:55.991175"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 1], ["created_at", "2020-03-25 10:56:55.995052"], ["updated_at", "2020-03-25 10:56:55.995052"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "myths"], ["advice_id", 3], ["created_at", "2020-03-25 10:56:56.013729"], ["updated_at", "2020-03-25 10:56:56.013729"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "believe it or not"], ["advice_id", 3], ["created_at", "2020-03-25 10:56:56.017569"], ["updated_at", "2020-03-25 10:56:56.017569"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 3], ["created_at", "2020-03-25 10:56:56.021173"], ["updated_at", "2020-03-25 10:56:56.021173"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "general advice"], ["advice_id", 2], ["created_at", "2020-03-25 10:56:56.024478"], ["updated_at", "2020-03-25 10:56:56.024478"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 2], ["created_at", "2020-03-25 10:56:56.027673"], ["updated_at", "2020-03-25 10:56:56.027673"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 2], ["created_at", "2020-03-25 10:56:56.030834"], ["updated_at", "2020-03-25 10:56:56.030834"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringfgg"], ["content", "teqweqweqxt"], ["title", "strinxcvcxv vcxvg"], ["created_at", "2020-03-25 10:56:56.083126"], ["updated_at", "2020-03-25 10:56:56.083126"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringggg"], ["content", "tefsdfsxt"], ["title", "striqqqqqng"], ["created_at", "2020-03-25 10:56:56.087780"], ["updated_at", "2020-03-25 10:56:56.087780"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.4ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinfddfdg"], ["content", "tesdfsdxt"], ["title", "striwwwwng"], ["created_at", "2020-03-25 10:56:56.091137"], ["updated_at", "2020-03-25 10:56:56.091137"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strindsdsg"], ["content", "teccxzxt"], ["title", "strindasdasdg"], ["created_at", "2020-03-25 10:56:56.109704"], ["updated_at", "2020-03-25 10:56:56.109704"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinasdqweg"], ["content", "qweqwetext"], ["title", "strindddddddg"], ["created_at", "2020-03-25 10:56:56.115042"], ["updated_at", "2020-03-25 10:56:56.115042"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 5], ["pastime_id", 1], ["created_at", "2020-03-25 10:56:56.167480"], ["updated_at", "2020-03-25 10:56:56.167480"]]
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 4], ["pastime_id", 3], ["created_at", "2020-03-25 10:56:56.173089"], ["updated_at", "2020-03-25 10:56:56.173089"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 10:56:56.176521"], ["updated_at", "2020-03-25 10:56:56.176521"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 1], ["pastime_id", 2], ["created_at", "2020-03-25 10:56:56.179553"], ["updated_at", "2020-03-25 10:56:56.179553"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 10:56:56.183397"], ["updated_at", "2020-03-25 10:56:56.183397"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/tags" for ::1 at 2020-03-25 10:57:00 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TagsController#index as HTML
+  [1m[36mTag Load (0.2ms)[0m  [1m[34mSELECT "tags".* FROM "tags"[0m
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+  [1m[36mCACHE Advice Load (0.0ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tags_controller.rb:4:in `index'
+Completed 200 OK in 30ms (Views: 23.4ms | ActiveRecord: 1.5ms | Allocations: 22560)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 10:58:15 +0000
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 9.7ms | ActiveRecord: 0.1ms | Allocations: 1531)
+
+
+Started GET "/advice_tags" for ::1 at 2020-03-25 11:07:39 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.2.2) lib/active_record/migration.rb:587:in `check_pending!'
+activerecord (6.0.2.2) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.2.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAdviceTags (20200325110037)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "advice_tags" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "advice_id" integer NOT NULL, "tag_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_6f999c69f6"
+FOREIGN KEY ("advice_id")
+  REFERENCES "advices" ("id")
+, CONSTRAINT "fk_rails_0af0c5217b"
+FOREIGN KEY ("tag_id")
+  REFERENCES "tags" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_advice_id" ON "advice_tags" ("advice_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_advice_tags_on_tag_id" ON "advice_tags" ("tag_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200325110037"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/advices" for ::1 at 2020-03-25 11:08:41 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 16.8ms | ActiveRecord: 0.7ms | Allocations: 7761)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 11:09:19 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 6.4ms | ActiveRecord: 0.7ms | Allocations: 7714)
+
+
+Started GET "/advice_tags" for ::1 at 2020-03-25 11:09:22 +0000
+Processing by AdviceTagsController#index as HTML
+  [1m[36mAdviceTag Load (0.2ms)[0m  [1m[34mSELECT "advice_tags".* FROM "advice_tags"[0m
+  ↳ app/controllers/advice_tags_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 2112)
+
+
+Started GET "/advice_tags" for ::1 at 2020-03-25 11:10:08 +0000
+Processing by AdviceTagsController#index as HTML
+  [1m[36mAdviceTag Load (0.1ms)[0m  [1m[34mSELECT "advice_tags".* FROM "advice_tags"[0m
+  ↳ app/controllers/advice_tags_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 830)
+
+
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mAdviceTag Load (0.1ms)[0m  [1m[34mSELECT "advice_tags".* FROM "advice_tags" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "When to use a mask"], ["content", "If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.<br>Wear a mask if you are coughing or sneezing.<br>Masks are effective only when used in combination with frequent hand-cleaning with alcohol-based hand rub or soap and water.<br>If you wear a mask, then you must know how to use it and dispose of it properly.<br>Before putting on a mask, clean hands with alcohol-based hand rub or soap and water.<br>Cover mouth and nose with mask and make sure there are no gaps between your face and the mask.<br>Avoid touching the mask while using it; if you do, clean your hands with alcohol-based hand rub or soap and water.<br>Replace the mask with a new one as soon as it is damp and do not re-use single-use masks.<br>To remove the mask: remove it from behind (do not touch the front of mask); <br>discard immediately in a closed bin; <br>clean hands with alcohol-based hand rub or soap and water."], ["video", "https://youtu.be/M4olt47pr_o"], ["image", "images/masks"], ["created_at", "2020-03-25 11:12:25.153395"], ["updated_at", "2020-03-25 11:12:25.153395"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Basic protective measures against the new coronavirus"], ["content", "Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local public health authority. Most people who become infected experience mild illness and recover, but it can be more severe for others. <br>Take care of your health and protect others by doing the following:<br><h4>Wash your hands frequently</h4><br>Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.<br><h6>Why?</h6> Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>Maintain social distancing<br>Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.<br><h6>Why?</h6> When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.Avoid touching eyes, nose and mouth<br><h6>Why?</h6> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.<br><h5>Practice respiratory hygiene</h5><br>Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.<br><h6>Why?</h6> Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.<br><h5>If you have fever, cough and difficulty breathing, seek medical care early</h5><br>Stay home if you feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.<br><h6>Why?</h6> National and local authorities will have the most up to date information on the situation in your area. Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also protect you and help prevent spread of viruses and other infections.<h5>Stay informed and follow advice given by your healthcare provider</h5><br>Stay informed on the latest developments about COVID-19. Follow advice given by your healthcare provider, your national and local public health authority or your employer on how to protect yourself and others from COVID-19.<br><h6>Why?</h6> National and local authorities will have the most up to date information on whether COVID-19 is spreading in your area. They are best placed to advise on what people in your area should be doing to protect themselves.<br><h4>Protection measures for persons who are in or have recently visited (past 14 days) areas where COVID-19 is spreading</h4><br>Follow the guidance outlined above.<br>Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover. Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.<br>If you develop fever, cough and difficulty breathing, seek medical advice promptly as this may be due to a respiratory infection or other serious condition. Call in advance and tell your provider of any recent travel or contact with travelers. Why? Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also help to prevent possible spread of COVID-19 and other viruses."], ["video", "https://youtu.be/bPITHEiFWLc"], ["image", "images/general"], ["created_at", "2020-03-25 11:12:25.157817"], ["updated_at", "2020-03-25 11:12:25.157817"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.2ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Myth busters"], ["content", "<h4>COVID-19 virus can be transmitted in areas with hot and humid climates</h4><br>From the evidence so far, the COVID-19 virus can be transmitted in ALL AREAS, including areas with hot and humid weather. Regardless of climate, adopt protective measures if you live in, or travel to an area reporting COVID-19. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<br><h4>Cold weather and snow CANNOT kill the new coronavirus.</h4><br>There is no reason to believe that cold weather can kill the new coronavirus or other diseases. The normal human body temperature remains around 36.5°C to 37°C, regardless of the external temperature or weather. The most effective way to protect yourself against the new coronavirus is by frequently cleaning your hands with alcohol-based hand rub or washing them with soap and water.<br><h4>Taking a hot bath does not prevent the new coronavirus disease</h4><br>Taking a hot bath will not prevent you from catching COVID-19. Your normal body temperature remains around 36.5°C to 37°C, regardless of the temperature of your bath or shower. Actually, taking a hot bath with extremely hot water can be harmful, as it can burn you. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<h4>The new coronavirus CANNOT be transmitted through mosquito bites.<h4><br>To date there has been no information nor evidence to suggest that the new coronavirus could be transmitted by mosquitoes. The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. To protect yourself, clean your hands frequently with an alcohol-based hand rub or wash them with soap and water. Also, avoid close contact with anyone who is coughing and sneezing.<br><h4>Are hand dryers effective in killing the new coronavirus?</h4><br>No. Hand dryers are not effective in killing the 2019-nCoV. To protect yourself against the new coronavirus, you should frequently clean your hands with an alcohol-based hand rub or wash them with soap and water. Once your hands are cleaned, you should dry them thoroughly by using paper towels or a warm air dryer.<br><h4>Can an ultraviolet disinfection lamp kill the new coronavirus?</h4><br>UV lamps should not be used to sterilize hands or other areas of skin as UV radiation can cause skin irritation."], ["video", ""], ["image", "images/Myth"], ["created_at", "2020-03-25 11:12:25.161166"], ["updated_at", "2020-03-25 11:12:25.161166"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "mask"], ["advice_id", 1], ["created_at", "2020-03-25 11:12:25.172200"], ["updated_at", "2020-03-25 11:12:25.172200"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 1], ["created_at", "2020-03-25 11:12:25.175764"], ["updated_at", "2020-03-25 11:12:25.175764"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 1], ["created_at", "2020-03-25 11:12:25.194134"], ["updated_at", "2020-03-25 11:12:25.194134"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.2ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "myths"], ["advice_id", 3], ["created_at", "2020-03-25 11:12:25.197501"], ["updated_at", "2020-03-25 11:12:25.197501"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "believe it or not"], ["advice_id", 3], ["created_at", "2020-03-25 11:12:25.200538"], ["updated_at", "2020-03-25 11:12:25.200538"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 3], ["created_at", "2020-03-25 11:12:25.204054"], ["updated_at", "2020-03-25 11:12:25.204054"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "general advice"], ["advice_id", 2], ["created_at", "2020-03-25 11:12:25.207508"], ["updated_at", "2020-03-25 11:12:25.207508"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "health"], ["advice_id", 2], ["created_at", "2020-03-25 11:12:25.211325"], ["updated_at", "2020-03-25 11:12:25.211325"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.3ms)[0m  [1m[32mINSERT INTO "tags" ("name", "advice_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "corona info"], ["advice_id", 2], ["created_at", "2020-03-25 11:12:25.214435"], ["updated_at", "2020-03-25 11:12:25.214435"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringfgg"], ["content", "teqweqweqxt"], ["title", "strinxcvcxv vcxvg"], ["created_at", "2020-03-25 11:12:25.227970"], ["updated_at", "2020-03-25 11:12:25.227970"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "stringggg"], ["content", "tefsdfsxt"], ["title", "striqqqqqng"], ["created_at", "2020-03-25 11:12:25.245308"], ["updated_at", "2020-03-25 11:12:25.245308"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinfddfdg"], ["content", "tesdfsdxt"], ["title", "striwwwwng"], ["created_at", "2020-03-25 11:12:25.249440"], ["updated_at", "2020-03-25 11:12:25.249440"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strindsdsg"], ["content", "teccxzxt"], ["title", "strindasdasdg"], ["created_at", "2020-03-25 11:12:25.253034"], ["updated_at", "2020-03-25 11:12:25.253034"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPastime Create (0.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("name", "content", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "strinasdqweg"], ["content", "qweqwetext"], ["title", "strindddddddg"], ["created_at", "2020-03-25 11:12:25.256538"], ["updated_at", "2020-03-25 11:12:25.256538"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 5], ["pastime_id", 1], ["created_at", "2020-03-25 11:12:25.271154"], ["updated_at", "2020-03-25 11:12:25.271154"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.4ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 4], ["pastime_id", 3], ["created_at", "2020-03-25 11:12:25.274620"], ["updated_at", "2020-03-25 11:12:25.274620"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 11:12:25.278021"], ["updated_at", "2020-03-25 11:12:25.278021"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.3ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 1], ["pastime_id", 2], ["created_at", "2020-03-25 11:12:25.281050"], ["updated_at", "2020-03-25 11:12:25.281050"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRating Create (0.2ms)[0m  [1m[32mINSERT INTO "ratings" ("rate", "pastime_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["rate", 2], ["pastime_id", 2], ["created_at", "2020-03-25 11:12:25.284228"], ["updated_at", "2020-03-25 11:12:25.284228"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "When to use a mask"], ["content", "If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.<br>Wear a mask if you are coughing or sneezing.<br>Masks are effective only when used in combination with frequent hand-cleaning with alcohol-based hand rub or soap and water.<br>If you wear a mask, then you must know how to use it and dispose of it properly.<br>Before putting on a mask, clean hands with alcohol-based hand rub or soap and water.<br>Cover mouth and nose with mask and make sure there are no gaps between your face and the mask.<br>Avoid touching the mask while using it; if you do, clean your hands with alcohol-based hand rub or soap and water.<br>Replace the mask with a new one as soon as it is damp and do not re-use single-use masks.<br>To remove the mask: remove it from behind (do not touch the front of mask); <br>discard immediately in a closed bin; <br>clean hands with alcohol-based hand rub or soap and water."], ["video", "https://youtu.be/M4olt47pr_o"], ["image", "images/masks"], ["created_at", "2020-03-25 11:16:11.958400"], ["updated_at", "2020-03-25 11:16:11.958400"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Basic protective measures against the new coronavirus"], ["content", "Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local public health authority. Most people who become infected experience mild illness and recover, but it can be more severe for others. <br>Take care of your health and protect others by doing the following:<br><h4>Wash your hands frequently</h4><br>Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.<br><h6>Why?</h6> Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>Maintain social distancing<br>Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.<br><h6>Why?</h6> When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.Avoid touching eyes, nose and mouth<br><h6>Why?</h6> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.<br><h5>Practice respiratory hygiene</h5><br>Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.<br><h6>Why?</h6> Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.<br><h5>If you have fever, cough and difficulty breathing, seek medical care early</h5><br>Stay home if you feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.<br><h6>Why?</h6> National and local authorities will have the most up to date information on the situation in your area. Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also protect you and help prevent spread of viruses and other infections.<h5>Stay informed and follow advice given by your healthcare provider</h5><br>Stay informed on the latest developments about COVID-19. Follow advice given by your healthcare provider, your national and local public health authority or your employer on how to protect yourself and others from COVID-19.<br><h6>Why?</h6> National and local authorities will have the most up to date information on whether COVID-19 is spreading in your area. They are best placed to advise on what people in your area should be doing to protect themselves.<br><h4>Protection measures for persons who are in or have recently visited (past 14 days) areas where COVID-19 is spreading</h4><br>Follow the guidance outlined above.<br>Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover. Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.<br>If you develop fever, cough and difficulty breathing, seek medical advice promptly as this may be due to a respiratory infection or other serious condition. Call in advance and tell your provider of any recent travel or contact with travelers. Why? Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also help to prevent possible spread of COVID-19 and other viruses."], ["video", "https://youtu.be/bPITHEiFWLc"], ["image", "images/general"], ["created_at", "2020-03-25 11:16:11.962977"], ["updated_at", "2020-03-25 11:16:11.962977"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Myth busters"], ["content", "<h4>COVID-19 virus can be transmitted in areas with hot and humid climates</h4><br>From the evidence so far, the COVID-19 virus can be transmitted in ALL AREAS, including areas with hot and humid weather. Regardless of climate, adopt protective measures if you live in, or travel to an area reporting COVID-19. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<br><h4>Cold weather and snow CANNOT kill the new coronavirus.</h4><br>There is no reason to believe that cold weather can kill the new coronavirus or other diseases. The normal human body temperature remains around 36.5°C to 37°C, regardless of the external temperature or weather. The most effective way to protect yourself against the new coronavirus is by frequently cleaning your hands with alcohol-based hand rub or washing them with soap and water.<br><h4>Taking a hot bath does not prevent the new coronavirus disease</h4><br>Taking a hot bath will not prevent you from catching COVID-19. Your normal body temperature remains around 36.5°C to 37°C, regardless of the temperature of your bath or shower. Actually, taking a hot bath with extremely hot water can be harmful, as it can burn you. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<h4>The new coronavirus CANNOT be transmitted through mosquito bites.<h4><br>To date there has been no information nor evidence to suggest that the new coronavirus could be transmitted by mosquitoes. The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. To protect yourself, clean your hands frequently with an alcohol-based hand rub or wash them with soap and water. Also, avoid close contact with anyone who is coughing and sneezing.<br><h4>Are hand dryers effective in killing the new coronavirus?</h4><br>No. Hand dryers are not effective in killing the 2019-nCoV. To protect yourself against the new coronavirus, you should frequently clean your hands with an alcohol-based hand rub or wash them with soap and water. Once your hands are cleaned, you should dry them thoroughly by using paper towels or a warm air dryer.<br><h4>Can an ultraviolet disinfection lamp kill the new coronavirus?</h4><br>UV lamps should not be used to sterilize hands or other areas of skin as UV radiation can cause skin irritation."], ["video", ""], ["image", "images/Myth"], ["created_at", "2020-03-25 11:16:11.966758"], ["updated_at", "2020-03-25 11:16:11.966758"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "mask"], ["created_at", "2020-03-25 11:16:11.977385"], ["updated_at", "2020-03-25 11:16:11.977385"]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.4ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "When to use a mask"], ["content", "If you are healthy, you only need to wear a mask if you are taking care of a person with suspected 2019-nCoV infection.<br>Wear a mask if you are coughing or sneezing.<br>Masks are effective only when used in combination with frequent hand-cleaning with alcohol-based hand rub or soap and water.<br>If you wear a mask, then you must know how to use it and dispose of it properly.<br>Before putting on a mask, clean hands with alcohol-based hand rub or soap and water.<br>Cover mouth and nose with mask and make sure there are no gaps between your face and the mask.<br>Avoid touching the mask while using it; if you do, clean your hands with alcohol-based hand rub or soap and water.<br>Replace the mask with a new one as soon as it is damp and do not re-use single-use masks.<br>To remove the mask: remove it from behind (do not touch the front of mask); <br>discard immediately in a closed bin; <br>clean hands with alcohol-based hand rub or soap and water."], ["video", "https://youtu.be/M4olt47pr_o"], ["image", "images/masks"], ["created_at", "2020-03-25 11:18:10.111088"], ["updated_at", "2020-03-25 11:18:10.111088"]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.5ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Basic protective measures against the new coronavirus"], ["content", "Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local public health authority. Most people who become infected experience mild illness and recover, but it can be more severe for others. <br>Take care of your health and protect others by doing the following:<br><h4>Wash your hands frequently</h4><br>Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water.<br><h6>Why?</h6> Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>Maintain social distancing<br>Maintain at least 1 metre (3 feet) distance between yourself and anyone who is coughing or sneezing.<br><h6>Why?</h6> When someone coughs or sneezes they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person coughing has the disease.Avoid touching eyes, nose and mouth<br><h6>Why?</h6> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.<br><h5>Practice respiratory hygiene</h5><br>Make sure you, and the people around you, follow good respiratory hygiene. This means covering your mouth and nose with your bent elbow or tissue when you cough or sneeze. Then dispose of the used tissue immediately.<br><h6>Why?</h6> Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.<br><h5>If you have fever, cough and difficulty breathing, seek medical care early</h5><br>Stay home if you feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and call in advance. Follow the directions of your local health authority.<br><h6>Why?</h6> National and local authorities will have the most up to date information on the situation in your area. Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also protect you and help prevent spread of viruses and other infections.<h5>Stay informed and follow advice given by your healthcare provider</h5><br>Stay informed on the latest developments about COVID-19. Follow advice given by your healthcare provider, your national and local public health authority or your employer on how to protect yourself and others from COVID-19.<br><h6>Why?</h6> National and local authorities will have the most up to date information on whether COVID-19 is spreading in your area. They are best placed to advise on what people in your area should be doing to protect themselves.<br><h4>Protection measures for persons who are in or have recently visited (past 14 days) areas where COVID-19 is spreading</h4><br>Follow the guidance outlined above.<br>Stay at home if you begin to feel unwell, even with mild symptoms such as headache and slight runny nose, until you recover. Why? Avoiding contact with others and visits to medical facilities will allow these facilities to operate more effectively and help protect you and others from possible COVID-19 and other viruses.<br>If you develop fever, cough and difficulty breathing, seek medical advice promptly as this may be due to a respiratory infection or other serious condition. Call in advance and tell your provider of any recent travel or contact with travelers. Why? Calling in advance will allow your health care provider to quickly direct you to the right health facility. This will also help to prevent possible spread of COVID-19 and other viruses."], ["video", "https://youtu.be/bPITHEiFWLc"], ["image", "images/general"], ["created_at", "2020-03-25 11:18:10.117538"], ["updated_at", "2020-03-25 11:18:10.117538"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdvice Create (0.3ms)[0m  [1m[32mINSERT INTO "advices" ("title", "content", "video", "image", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Myth busters"], ["content", "<h4>COVID-19 virus can be transmitted in areas with hot and humid climates</h4><br>From the evidence so far, the COVID-19 virus can be transmitted in ALL AREAS, including areas with hot and humid weather. Regardless of climate, adopt protective measures if you live in, or travel to an area reporting COVID-19. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<br><h4>Cold weather and snow CANNOT kill the new coronavirus.</h4><br>There is no reason to believe that cold weather can kill the new coronavirus or other diseases. The normal human body temperature remains around 36.5°C to 37°C, regardless of the external temperature or weather. The most effective way to protect yourself against the new coronavirus is by frequently cleaning your hands with alcohol-based hand rub or washing them with soap and water.<br><h4>Taking a hot bath does not prevent the new coronavirus disease</h4><br>Taking a hot bath will not prevent you from catching COVID-19. Your normal body temperature remains around 36.5°C to 37°C, regardless of the temperature of your bath or shower. Actually, taking a hot bath with extremely hot water can be harmful, as it can burn you. The best way to protect yourself against COVID-19 is by frequently cleaning your hands. By doing this you eliminate viruses that may be on your hands and avoid infection that could occur by then touching your eyes, mouth, and nose.<h4>The new coronavirus CANNOT be transmitted through mosquito bites.<h4><br>To date there has been no information nor evidence to suggest that the new coronavirus could be transmitted by mosquitoes. The new coronavirus is a respiratory virus which spreads primarily through droplets generated when an infected person coughs or sneezes, or through droplets of saliva or discharge from the nose. To protect yourself, clean your hands frequently with an alcohol-based hand rub or wash them with soap and water. Also, avoid close contact with anyone who is coughing and sneezing.<br><h4>Are hand dryers effective in killing the new coronavirus?</h4><br>No. Hand dryers are not effective in killing the 2019-nCoV. To protect yourself against the new coronavirus, you should frequently clean your hands with an alcohol-based hand rub or wash them with soap and water. Once your hands are cleaned, you should dry them thoroughly by using paper towels or a warm air dryer.<br><h4>Can an ultraviolet disinfection lamp kill the new coronavirus?</h4><br>UV lamps should not be used to sterilize hands or other areas of skin as UV radiation can cause skin irritation."], ["video", ""], ["image", "images/Myth"], ["created_at", "2020-03-25 11:18:10.122139"], ["updated_at", "2020-03-25 11:18:10.122139"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTag Create (0.4ms)[0m  [1m[32mINSERT INTO "tags" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "mask"], ["created_at", "2020-03-25 11:18:10.133248"], ["updated_at", "2020-03-25 11:18:10.133248"]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/adivces" for ::1 at 2020-03-25 11:34:44 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/adivces"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/method_override.rb:24:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/advices" for ::1 at 2020-03-25 11:34:54 +0000
+Processing by AdvicesController#index as HTML
+  [1m[36mAdvice Load (1.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 26ms (Views: 19.3ms | ActiveRecord: 1.6ms | Allocations: 9443)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 11:50:26 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.2ms | Allocations: 3559)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 11:53:06 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.2ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 11:58:12 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 40ms (Views: 38.0ms | ActiveRecord: 0.3ms | Allocations: 3540)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:12 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.9ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 13.9ms | ActiveRecord: 0.9ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:13 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.3ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:14 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.5ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.5ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:18 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.3ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:19 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.4ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.4ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:21 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.6ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:00:27 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 3537)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:22:37 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms | Allocations: 3559)
+
+
+Started GET "/advices" for ::1 at 2020-03-25 12:27:30 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.3ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.3ms | Allocations: 3537)
+
+
