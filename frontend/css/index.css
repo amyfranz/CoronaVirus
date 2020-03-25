@@ -202,17 +202,59 @@ header {
   min-height: 100vh;
   background-color: #ddd;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.info-header {
+  margin: 2rem;
+  font-size: 3rem;
+  border-bottom: 2px solid black;
+  padding: 1rem 0;
 }
 
 .map {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  align-items: center;
+}
+
+#map {
+  height: 40rem;
+  width: 50rem;
+}
+
+.map .search-form input {
+  width: 30rem;
+  height: 3rem;
+  margin: 2rem;
 }
 
 .map-info {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-info .suggestions {
+  list-style: none;
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.suggestions li {
+  margin: 1rem;
+  width: 30rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 1px solid black;
+  padding: 1rem;
 }
 
 footer {

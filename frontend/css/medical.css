@@ -59,8 +59,8 @@ img {
   left: 0;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.4),
-    rgba(154, 79, 255, 0.7)
+    rgba(0, 0, 0, 0.2),
+    rgba(154, 79, 255, 0.3)
   );
   box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0, 0, 0, 0.2);
   border-radius: 0.8rem;

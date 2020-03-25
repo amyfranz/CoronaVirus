@@ -43,6 +43,7 @@
 .pastime-header p {
   border-bottom: 1px solid #eee;
   padding: 1rem;
+  font-size: 1.3rem;
 }
 
 .table {
@@ -116,10 +117,12 @@
 .card p {
   font-size: 1.5rem;
   width: 70%;
+  margin: 1rem 0;
 }
 
 .card span {
   font-size: 2rem;
+  margin: 1rem 0;
 }
 
 .card a {
