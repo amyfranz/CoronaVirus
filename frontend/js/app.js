@@ -91,7 +91,7 @@ const createMap = () => {
 const addCountryMarker = (countryData, map) => {
   const nameCountry = countryData["country_name"];
   fetchData(
-    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=003d4d4170f54726a615eeb07ff54d3b`
+    `https://api.opencagedata.com/geocode/v1/json?q=${nameCountry}&key=e4c53fec8cd84372a9a23cfa112506ad`
   ).then(data => {
     data["results"][0]["geometry"]["lat"];
     data["results"][0]["geometry"]["lng"];
