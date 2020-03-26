@@ -26,6 +26,8 @@ const renderPastimes = data => {
     const p = document.createElement("p");
     p.innerText = pastime.summary;
     const like = document.createElement("p");
+    like.className = "likes-display";
+    like.id = `likes-${pastime.id}`;
     like.innerText = `Likes: ${pastime.like_count}`;
     const a = document.createElement("a");
     a.className = "pastime-btn";
@@ -44,19 +46,20 @@ function fetchShow(event) {
   fetch(`http://localhost:3000/pastimes/${event.target.id}`)
     .then(res => res.json())
     .then(pastime => {
-      displayShow(pastime);
+      displayShow(pastime, event);
     });
 }
 
-function displayShow(pastime) {
+function displayShow(pastime, event) {
+  let likeCount = pastime.like_count;
   const container = document.querySelector(".show");
   const h1 = document.createElement("h1");
   h1.innerText = pastime.title;
   const img = document.createElement("img");
-  img.src = `images/${pastime.img_url}`;
+  img.src = pastime.img_url;
   const p = document.createElement("p");
   p.innerText = pastime.content;
-  const like = document.querySelector("i");
+  const like = document.createElement("i");
   like.className = "far fa-thumbs-up";
   const a = document.createElement("a");
   a.innerText = "Back";
@@ -65,6 +68,7 @@ function displayShow(pastime) {
   container.append(h1, img, p, like, a);
   document.querySelector(".pastimes").style.display = "none";
   like.addEventListener("click", () => {
+    ++likeCount;
     if (like.className === "far fa-thumbs-up") {
       const option = {
         method: "PATCH",
@@ -72,11 +76,14 @@ function displayShow(pastime) {
           "Content-Type": "application/json",
           accept: "application/json"
         },
-        body: JSON.stringify({ like_count: pastime.like_count++ })
+        body: JSON.stringify({ like_count: likeCount })
       };
       fetchData(`http://localhost:3000/pastimes/${pastime.id}`, option).then(
         data => {
           console.log(data);
+          document.querySelector(
+            `#likes-${event.target.id}`
+          ).innerText = `Likes: ${data.like_count}`;
           like.className = "fas fa-thumbs-up";
         }
       );
@@ -93,6 +100,7 @@ document.querySelector("form").addEventListener("submit", e => {
   e.preventDefault();
   console.log(e.target);
   const body = {
+    like_count: 0,
     icon: e.target.icon.value,
     title: e.target.title.value,
     content: e.target.content.value,
