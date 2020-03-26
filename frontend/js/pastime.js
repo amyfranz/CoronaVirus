@@ -19,21 +19,19 @@ const renderPastimes = data => {
     const card = document.createElement("div");
     card.className = "card";
     const i = document.createElement("i");
-    i.className = "fas fa-running";
+    i.className = pastime.icon;
     const h5 = document.createElement("h5");
     h5.className = "card-head";
     h5.innerText = pastime.title;
     const p = document.createElement("p");
     p.innerText = pastime.summary;
-    const span = document.createElement("span");
-    span.innerText = pastime.content;
-    span.className = "pastime-duration";
+    const like = document.createElement("p");
+    like.innerText = `Likes: ${pastime.like_count}`;
     const a = document.createElement("a");
     a.className = "pastime-btn";
     a.id = pastime.id;
     a.innerText = "Read More";
-    const ratingP = showRating();
-    card.append(i, h5, p, span, ratingP, a);
+    card.append(i, h5, p, like, a);
     table.append(card);
   });
   pastimes.prepend(table);
@@ -42,28 +40,6 @@ const renderPastimes = data => {
     link.addEventListener("click", e => fetchShow(e));
   });
 };
-
-const showRating = () => {
-  const ratingP = document.createElement("p");
-  for (let i = 0; i < 3; i++) {
-    const ratingBtn = document.createElement("button");
-    ratingBtn.id = `rating${i}`;
-    const ratingLi = document.createElement("i");
-    ratingLi.className = "far fa-star rating";
-    ratingBtn.append(ratingLi);
-    ratingP.append(ratingBtn);
-  }
-  for (let i = 3; i < 5; i++) {
-    const ratingBtn = document.createElement("button");
-    ratingBtn.id = `rating${i}`;
-    const ratingLi = document.createElement("i");
-    ratingLi.className = "fas fa-star rating";
-    ratingBtn.append(ratingLi);
-    ratingP.append(ratingBtn);
-  }
-  return ratingP;
-};
-
 function fetchShow(event) {
   fetch(`http://localhost:3000/pastimes/${event.target.id}`)
     .then(res => res.json())
@@ -80,12 +56,32 @@ function displayShow(pastime) {
   img.src = `images/${pastime.img_url}`;
   const p = document.createElement("p");
   p.innerText = pastime.content;
+  const like = document.querySelector("i");
+  like.className = "far fa-thumbs-up";
   const a = document.createElement("a");
   a.innerText = "Back";
   a.className = "back-btn";
   a.addEventListener("click", e => handleExit(e));
-  container.append(h1, img, p, a);
+  container.append(h1, img, p, like, a);
   document.querySelector(".pastimes").style.display = "none";
+  like.addEventListener("click", () => {
+    if (like.className === "far fa-thumbs-up") {
+      const option = {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json"
+        },
+        body: JSON.stringify({ like_count: pastime.like_count++ })
+      };
+      fetchData(`http://localhost:3000/pastimes/${pastime.id}`, option).then(
+        data => {
+          console.log(data);
+          like.className = "fas fa-thumbs-up";
+        }
+      );
+    }
+  });
 }
 
 function handleExit(e) {
