@@ -10,17 +10,6 @@ fetchData("http://localhost:3000/pastimes")
   .then(data => renderPastimes(data))
   .catch(err => console.log(err));
 
-const getRating = pastime_id => {
-  let ratings = [];
-  fetchData("http://localhost:3000/ratings").then(rating =>
-    rating.forEach(rate => {
-      if (rate.pastime_id === pastime_id) {
-        ratings.push(rate);
-      }
-    })
-  );
-};
-
 const renderPastimes = data => {
   const pastimes = document.querySelector(".pastimes");
   const table = document.createElement("div");
@@ -43,8 +32,7 @@ const renderPastimes = data => {
     a.className = "pastime-btn";
     a.id = pastime.id;
     a.innerText = "Read More";
-    const ratingP = showRating(getRating(pastime.id));
-    card.append(i, h5, p, span, ratingP, a);
+    card.append(i, h5, p, span, a);
     table.append(card);
   });
   pastimes.prepend(table);
@@ -53,62 +41,12 @@ const renderPastimes = data => {
     link.addEventListener("click", e => fetchShow(e));
   });
 };
-
-function appendEmptyStar(ratingBtn, i) {
-  ratingBtn.innerHTML = "";
-  const ratingI = document.createElement("i");
-  ratingI.id = `${i + 1}`;
-  ratingI.className = "fas fa-star";
-  ratingBtn.append(ratingLi);
-}
-
-function appendFullStar(ratingBtn, i) {
-  ratingBtn.innerHTML = "";
-  const ratingI = document.createElement("i");
-  ratingI.id = `${i + 1}`;
-  ratingI.className = "far fa-star";
-  ratingBtn.append(ratingI);
-}
-
-const showRating = (rating = 0) => {
-  const ratingP = document.createElement("p");
-  ratingP.className = "ratings";
-  for (let i = 0; i < rating; i++) {
-    const ratingBtn = document.createElement("button");
-    appendEmptyStar(ratingBtn, i);
-    ratingP.append(ratingBtn);
-  }
-  for (let i = rating; i < 5; i++) {
-    const ratingBtn = document.createElement("button");
-    appendFullStar(ratingBtn, i);
-    ratingP.append(ratingBtn);
-  }
-  return ratingP;
-};
-
 function fetchShow(event) {
   fetch(`http://localhost:3000/pastimes/${event.target.id}`)
     .then(res => res.json())
     .then(pastime => {
       displayShow(pastime);
     });
-}
-
-function postRating(e) {
-  const btn = document.querySelector("p.ratings").querySelectorAll("button");
-  fetchData("http://localhost:3000/ratings", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      accept: "application/json"
-    },
-    body: JSON.stringify({
-      rate: Number(e.target.id),
-      pastime_id: 2
-    })
-  }).then(console.log);
-  showRating(Number(e.target.id));
-  console.log(e.target.id);
 }
 
 function displayShow(pastime) {
@@ -120,7 +58,7 @@ function displayShow(pastime) {
   const p = document.createElement("p");
   p.innerText = pastime.content;
   const a = document.createElement("a");
-  const rating = showRating(pastime.id);
+  const rating = showRating();
   a.innerText = "Back";
   a.className = "back-btn";
   a.addEventListener("click", e => handleExit(e));
