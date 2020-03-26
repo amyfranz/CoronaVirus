@@ -22,6 +22,6 @@ class PastimesController < ApplicationController
     private
 
     def allowed_params
-        params.require(:pastime).permit(:name, :content, :title)
+        params.require(:pastime).permit(:icon, :content, :title, :summary ,:img_url)
     end
 end
