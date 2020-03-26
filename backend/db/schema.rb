@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
   end
 
   create_table "pastimes", force: :cascade do |t|
-    t.string "name"
+    t.string "icon"
     t.string "summary"
     t.text "content"
     t.string "title"
