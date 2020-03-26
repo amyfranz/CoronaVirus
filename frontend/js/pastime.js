@@ -12,14 +12,13 @@ fetchData("http://localhost:3000/pastimes")
 
 const getRating = pastime_id => {
   let ratings = [];
-  fetchData("http://localhost:3000/ratings")
-    .then(rating =>
-      rating.forEach(rate => {
-        if (rate.pastime_id === pastime_id) {
-          ratings.push(rate);
-        }
-      })
-    )
+  fetchData("http://localhost:3000/ratings").then(rating =>
+    rating.forEach(rate => {
+      if (rate.pastime_id === pastime_id) {
+        ratings.push(rate);
+      }
+    })
+  );
 };
 
 const renderPastimes = data => {
