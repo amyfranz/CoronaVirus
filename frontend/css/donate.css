@@ -39,17 +39,17 @@
   height: 40rem;
   border-radius: 5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   background-image: var(--background-color);
 }
 
 .donate-form {
   display: flex;
-  flex-direction: column;
+flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-image: var(--background-color);
   padding: 5rem;
   border-radius: 0.8rem;
