@@ -42,7 +42,6 @@ const renderPastimes = data => {
   });
 };
 
-<<<<<<< HEAD
 function fetchShow(event) {
   fetch(`http://localhost:3000/pastimes/${event.target.id}`)
     .then(res => res.json())
@@ -71,7 +70,7 @@ function handleExit(e) {
   document.querySelector(".pastimes").style.display = "grid";
   document.querySelector(".show").innerHTML = "";
 }
-=======
+
 document.querySelector("form").addEventListener("submit", e => {
   e.preventDefault();
   console.log(e.target);
@@ -92,4 +91,3 @@ document.querySelector("form").addEventListener("submit", e => {
   };
   fetchData("http://localhost:3000/pastimes", option).then(console.log);
 });
->>>>>>> 856513f718b0a7db41d0297c2ee87f2b7cc434b6
