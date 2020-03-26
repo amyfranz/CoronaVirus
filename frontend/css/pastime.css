@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  overflow-y: none;
 }
 
 :root {
@@ -19,15 +20,6 @@
   --animation-properties: alternate-gradient 5s alternate infinite;
 }
 
-.show {
-  min-height: 100vh;
-  background-color: #2b2b2b;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #eee;
-}
-
 .wrapper {
   min-height: 100vh;
   background-color: #2b2b2b;
@@ -43,15 +35,8 @@ a {
   text-decoration: none;
   display: inline-block;
   color: #c2c2c2;
-  border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 2rem;
-  margin-top: 1.5rem;
-}
-
-a:hover {
-  background: linear-gradient(60deg, #5ff281, #5f86f2, #a65ff2) 0 50%;
-  border: none;
-  color: white;
+  margin-top: 1rem;
 }
 
 .pastime-wrapper {
@@ -61,6 +46,11 @@ a:hover {
   flex-direction: column;
   align-items: center;
   color: #eee;
+  width: 100%;
+}
+
+.pastimes {
+  width: 100%;
 }
 
 .pastime-header {
@@ -82,9 +72,8 @@ a:hover {
 }
 
 .table {
-  margin: 5rem;
   display: grid;
-
+  width: 100%;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   color: #eee;
@@ -101,6 +90,7 @@ a:hover {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  margin: 3rem;
 }
 
 .card::before,
@@ -160,21 +150,50 @@ a:hover {
   margin: 1rem 0;
 }
 
-.card a {
+.card a,
+.back-btn {
   font-size: 1.2rem;
   padding: 1rem 2rem;
   text-decoration: none;
   display: inline-block;
   color: #c2c2c2;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 2rem;
   margin-top: 1.5rem;
 }
 
-.card a:hover {
+.card a:hover,
+.back-btn {
   background: linear-gradient(60deg, #5ff281, #5f86f2, #a65ff2) 0 50%;
-  border: none;
   color: white;
+}
+
+.show {
+  margin-top: 3rem;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+}
+
+.show h1 {
+  font-size: 3rem;
+}
+
+.show img {
+  width: 20rem;
+  height: 20rem;
+  margin: 2rem;
+}
+
+.show p {
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+.back-btn {
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 @keyframes alternate-gradient {
