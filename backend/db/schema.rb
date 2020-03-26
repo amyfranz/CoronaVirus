@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_03_26_152241) do
 
-  create_table "advice_tags", force: :cascade do |t|
-    t.integer "advice_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["advice_id"], name: "index_advice_tags_on_advice_id"
-    t.index ["tag_id"], name: "index_advice_tags_on_tag_id"
-  end
-
   create_table "advices", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -46,6 +37,4 @@ ActiveRecord::Schema.define(version: 2020_03_26_152241) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "advice_tags", "advices"
-  add_foreign_key "advice_tags", "tags"
 end
