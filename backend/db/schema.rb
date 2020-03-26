@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
   create_table "advices", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.string "video"
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,19 +35,11 @@ ActiveRecord::Schema.define(version: 2020_03_25_110037) do
     t.text "content"
     t.string "title"
     t.string "img_url"
+    t.integer "like_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "ratings", force: :cascade do |t|
-    t.integer "rate"
-    t.integer "pastime_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["pastime_id"], name: "index_ratings_on_pastime_id"
   end
 
   add_foreign_key "advice_tags", "advices"
   add_foreign_key "advice_tags", "tags"
-  add_foreign_key "ratings", "pastimes"
 end

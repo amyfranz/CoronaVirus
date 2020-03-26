@@ -19,6 +19,16 @@ class PastimesController < ApplicationController
         end
     end
 
+    def update
+        pastime = Pastime.find(params[:id])
+
+        if pastime.save
+          render json: pastime,status: :ok
+        else
+          render json: {data:pastime.errors},status: :unprocessable_entity
+        end
+    end
+
     private
 
     def allowed_params

@@ -23,6 +23,6 @@ class RatingsController < ApplicationController
     private
 
     def allowed_params
-        params.require(:rating).permit(:rate, :pastime_id)
+        params.require(:rating).permit(:pastime_id)
     end
 end

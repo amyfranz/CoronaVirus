@@ -26,13 +26,13 @@ Advice.create(title: "Myth busters" , content: "<h4>COVID-19 virus can be transm
 # AdviceTag.create(advice_id: 2, tag_id: 2)
 # AdviceTag.create(advice_id: 2, tag_id: 3)
 
-Pastime.create(icon: "fas fa-running", content: "teqweqweqxregreglnlkgerjnergnjergjnregjnregjnrgejnkgrent", title: "Quarantine Properly", summary: 'sgdjsahgfj', img_url: 'stock-image.jpg')
-Pastime.create(icon: "fas fa-graduation-cap", content: "tefsdfsrgenergnergnlgerngerjk.ergjk.ergk .jergjnergjnrgenjlrxt", title: "Don't Panic Buy", summary: 'sgdjsahgfj', img_url: 'panic-buy.jpg')
-Pastime.create(icon: "fas fa-gamepad", content: "tesdfergkgrklmgrenkrgenkregjnrgejrgjnkegrejnrgejngrjngrejngrjngrjnsdxt", title: "Exercise Regularly", summary: 'sgdjsahgfj', img_url: 'exercise.jpg')
+Pastime.create(like_count: 5, icon: "fas fa-running", content: "teqweqweqxregreglnlkgerjnergnjergjnregjnregjnrgejnkgrent", title: "Quarantine Properly", summary: 'sgdjsahgfj', img_url: 'stock-image.jpg')
+Pastime.create(like_count: 10, icon: "fas fa-graduation-cap", content: "tefsdfsrgenergnergnlgerngerjk.ergjk.ergk .jergjnergjnrgenjlrxt", title: "Don't Panic Buy", summary: 'sgdjsahgfj', img_url: 'panic-buy.jpg')
+Pastime.create(like_count: 3, icon: "fas fa-gamepad", content: "tesdfergkgrklmgrenkrgenkregjnrgejrgjnkegrejnrgejngrjngrejngrjngrjnsdxt", title: "Exercise Regularly", summary: 'sgdjsahgfj', img_url: 'exercise.jpg')
 
 
-Rating.create(rate: 5, pastime_id: 1)
-Rating.create(rate: 4, pastime_id: 3)
-Rating.create(rate: 2, pastime_id: 2)
-Rating.create(rate: 1, pastime_id: 2)
-Rating.create(rate: 2, pastime_id: 2)
+# Rating.create(pastime_id: 1)
+# Rating.create(pastime_id: 3)
+# Rating.create(pastime_id: 2)
+# Rating.create(pastime_id: 2)
+# Rating.create(pastime_id: 2)

@@ -6,6 +6,7 @@ class CreatePastimes < ActiveRecord::Migration[6.0]
       t.text :content
       t.string :title
       t.string :img_url
+      t.integer :like_count
 
       t.timestamps
     end
