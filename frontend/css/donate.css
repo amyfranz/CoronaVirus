@@ -47,7 +47,7 @@
 
 .donate-form {
   display: flex;
-flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   background-image: var(--background-color);
