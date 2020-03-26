@@ -31,8 +31,5 @@ Pastime.create(like_count: 10, icon: "fas fa-graduation-cap", content: "tefsdfsr
 Pastime.create(like_count: 3, icon: "fas fa-gamepad", content: "tesdfergkgrklmgrenkrgenkregjnrgejrgjnkegrejnrgejngrjngrejngrjngrjnsdxt", title: "Exercise Regularly", summary: 'sgdjsahgfj', img_url: 'exercise.jpg')
 
 
-# Rating.create(pastime_id: 1)
-# Rating.create(pastime_id: 3)
-# Rating.create(pastime_id: 2)
-# Rating.create(pastime_id: 2)
-# Rating.create(pastime_id: 2)
+Email.create(email: 'hi')
+Email.create(email: 'bye')
