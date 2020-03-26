@@ -73,9 +73,6 @@ const eachMedicalAdvice = medicalAdvice => {
   const p2 = document.querySelector("#content");
   p2.innerHTML = content;
 
-  const source = document.querySelector("#corona-video-source");
-  source.src = videoSrc;
-
   document.querySelector(".show").style.display = "none";
 
   btn1.addEventListener("click", e => {
