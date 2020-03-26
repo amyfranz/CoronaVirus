@@ -154,3 +154,32 @@ const searchBar = () => {
 };
 // createMap();
 searchBar();
+
+const form = document.querySelector(".news-form");
+console.log(form);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  value = document.querySelector(".email").value;
+  fetch("http://localhost:3000/emails", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json"
+    },
+    body: JSON.stringify({ email: value })
+  })
+    .then(res => displaySuccess(res))
+    .catch(err => console.log(err));
+});
+
+function displaySuccess(res) {
+  console.log(res);
+  const form = document.querySelector(".news-form");
+  console.log(form);
+  h3 = document.createElement("h3");
+  h3.innerText = "Submission Complete.";
+  form.prepend(h3);
+  setTimeout(() => {
+    h3.remove();
+  }, 3000);
+}

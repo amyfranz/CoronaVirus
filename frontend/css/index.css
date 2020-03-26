@@ -269,3 +269,8 @@ footer p {
   padding: 2rem;
   font-weight: 100;
 }
+
+form h3 {
+  text-align: center;
+  font-weight: 100;
+}
