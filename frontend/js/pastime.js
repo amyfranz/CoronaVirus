@@ -30,26 +30,43 @@ const renderPastimes = data => {
     span.className = "pastime-duration";
     const a = document.createElement("a");
     a.className = "pastime-btn";
+    a.id = pastime.id;
     a.innerText = "Read More";
-    const a1 = document.querySelector(".back-btn");
-    const title = document.querySelector("#title");
-    title.innerText = pastime.title;
-    const content = document.querySelector(".content");
-    content.innerText = pastime.content;
-    const image = document.querySelector("img");
-    image.src = `images/${pastime.img_url}`;
     card.append(i, h5, p, span, a);
     table.append(card);
-    document.querySelector(".show").style.display = "none";
-    a.addEventListener("click", () => {
-      document.querySelector(".index").style.display = "none";
-      document.querySelector(".show").style.display = "flex";
-    });
-    a1.addEventListener("click", () => {
-      console.log("hi");
-      document.querySelector(".show").style.display = "none";
-      document.querySelector(".index").style.display = "flex";
-    });
   });
-  pastimes.append(table);
+  pastimes.prepend(table);
+  const links = document.querySelectorAll(".table a");
+  links.forEach(link => {
+    link.addEventListener("click", e => fetchShow(e));
+  });
 };
+
+function fetchShow(event) {
+  fetch(`http://localhost:3000/pastimes/${event.target.id}`)
+    .then(res => res.json())
+    .then(pastime => {
+      displayShow(pastime);
+    });
+}
+
+function displayShow(pastime) {
+  const container = document.querySelector(".show");
+  const h1 = document.createElement("h1");
+  h1.innerText = pastime.title;
+  const img = document.createElement("img");
+  img.src = `images/${pastime.img_url}`;
+  const p = document.createElement("p");
+  p.innerText = pastime.content;
+  const a = document.createElement("a");
+  a.innerText = "Back";
+  a.className = "back-btn";
+  a.addEventListener("click", e => handleExit(e));
+  container.append(h1, img, p, a);
+  document.querySelector(".pastimes").style.display = "none";
+}
+
+function handleExit(e) {
+  document.querySelector(".pastimes").style.display = "grid";
+  document.querySelector(".show").innerHTML = "";
+}
