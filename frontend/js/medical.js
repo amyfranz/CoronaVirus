@@ -57,6 +57,7 @@ const eachMedicalAdvice = medicalAdvice => {
     .join(" ")}...`;
   const btn1 = document.createElement("a");
   btn1.className = "info-card-btn";
+  btn1.id = medicalAdvice.id;
   btn1.href = "#";
   btn1.innerText = "Read More";
   divImg.append(img);
@@ -64,54 +65,39 @@ const eachMedicalAdvice = medicalAdvice => {
   divInfo.append(divDate, heading, p, btn1);
   div.append(divImg, divInfo);
   document.querySelector(".info-container").append(div);
-
-  const btn2 = document.querySelector("#back");
-
-  const h1 = document.querySelector("#title-heading");
-  h1.innerText = title;
-
-  const p2 = document.querySelector("#content");
-  p2.innerHTML = content;
-
-  document.querySelector(".show").style.display = "none";
-
-  btn1.addEventListener("click", e => {
-    document.querySelector(".med-info").style.display = "none";
-    document.querySelector(".show").style.display = "flex";
-  });
-  btn2.addEventListener("click", () => {
-    document.querySelector(".show").style.display = "none";
-    document.querySelector(".med-info").style.display = "flex";
+  const links = document.querySelectorAll(".info-container a");
+  links.forEach(link => {
+    link.addEventListener("click", e => fetchShow(e));
   });
 };
 
-{
-  /*
-      <a href="#" class="info-card-btn">Back</a>
-      <h1 class="info-card-title"></h1>
-      <p class="info-card-text"></p>
-      <video src=""></video>
-  
-  <div class="info-container"> 
-  <div class="info-card">
-  <div class="info-card-img">
-  </div>
-  <div class="card-info">
-    <div class="card-date">
-      <span>Sunday</span>
-      <span>18th March</span>
-    </div>
-    <h1 class="info-card-title">Quarantine Properly</h1>
-    <p class="info-card-text">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt cumque hic
-      nesciunt ducimus id distinctio reiciendis, ipsum sint tempora sequi aut!
-      Minima, eos.
-    </p>
-    <a href="#" class="info-card-btn">
-      Read More
-    </a>
-  </div>
-</div>; */
+function fetchShow(event) {
+  fetch(`http://localhost:3000/advices/${event.target.id}`)
+    .then(res => res.json())
+    .then(advice => {
+      displayShow(advice);
+    });
+}
+
+function displayShow(advice) {
+  const container = document.querySelector(".show");
+  const h1 = document.createElement("h1");
+  h1.innerText = advice.title;
+  const p = document.createElement("p");
+  p.innerText = advice.content;
+  const a = document.createElement("a");
+  a.innerText = "Back";
+  a.className = "back-btn";
+  debugger;
+  a.addEventListener("click", e => handleExit(e));
+  container.append(h1, p, a);
+  document.querySelector(".info-container").style.display = "none";
+}
+
+function handleExit(e) {
+  document.querySelector(".info-container").style.display = "grid";
+  document.querySelector(".show").innerHTML = "";
+  fetchShow(e);
 }
 
 const renderIndex = data => {
