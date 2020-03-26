@@ -19,6 +19,41 @@
   --animation-properties: alternate-gradient 5s alternate infinite;
 }
 
+.show {
+  min-height: 100vh;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+}
+
+.wrapper {
+  min-height: 100vh;
+  background-color: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+}
+
+a {
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #c2c2c2;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  margin-top: 1.5rem;
+}
+
+a:hover {
+  background: linear-gradient(60deg, #5ff281, #5f86f2, #a65ff2) 0 50%;
+  border: none;
+  color: white;
+}
+
 .pastime-wrapper {
   min-height: 100vh;
   background-color: #2b2b2b;

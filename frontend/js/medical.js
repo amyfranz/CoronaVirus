@@ -73,12 +73,12 @@ const eachMedicalAdvice = medicalAdvice => {
   const p2 = document.querySelector("#content");
   p2.innerHTML = content;
 
-  const video = document.querySelector("#corona-video");
-  video.src = videoSrc;
+  const source = document.querySelector("#corona-video-source");
+  source.src = videoSrc;
 
   document.querySelector(".show").style.display = "none";
 
-  btn1.addEventListener("click", () => {
+  btn1.addEventListener("click", e => {
     document.querySelector(".med-info").style.display = "none";
     document.querySelector(".show").style.display = "flex";
   });
