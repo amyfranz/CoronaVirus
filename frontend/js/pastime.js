@@ -49,7 +49,7 @@ const showRating = () => {
     const ratingBtn = document.createElement("button");
     ratingBtn.id = `rating${i}`;
     const ratingLi = document.createElement("i");
-    ratingLi.className = "far fa-star";
+    ratingLi.className = "far fa-star rating";
     ratingBtn.append(ratingLi);
     ratingP.append(ratingBtn);
   }
@@ -57,7 +57,7 @@ const showRating = () => {
     const ratingBtn = document.createElement("button");
     ratingBtn.id = `rating${i}`;
     const ratingLi = document.createElement("i");
-    ratingLi.className = "fas fa-star";
+    ratingLi.className = "fas fa-star rating";
     ratingBtn.append(ratingLi);
     ratingP.append(ratingBtn);
   }
