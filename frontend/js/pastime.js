@@ -53,3 +53,24 @@ const renderPastimes = data => {
   });
   pastimes.append(table);
 };
+
+document.querySelector("form").addEventListener("submit", e => {
+  e.preventDefault();
+  console.log(e.target);
+  const body = {
+    icon: e.target.icon.value,
+    title: e.target.title.value,
+    content: e.target.content.value,
+    summary: e.target.summery.value,
+    img_url: e.target.image.value
+  };
+  const option = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json"
+    },
+    body: JSON.stringify(body)
+  };
+  fetchData("http://localhost:3000/pastimes", option).then(console.log);
+});
