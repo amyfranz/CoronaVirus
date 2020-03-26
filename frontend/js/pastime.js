@@ -107,5 +107,11 @@ document.querySelector("form").addEventListener("submit", e => {
     },
     body: JSON.stringify(body)
   };
-  fetchData("http://localhost:3000/pastimes", option).then(console.log);
+  fetchData("http://localhost:3000/pastimes", option).then(res =>
+    handleSuccess(res)
+  );
 });
+
+function handleSuccess(res) {
+  location.reload();
+}
