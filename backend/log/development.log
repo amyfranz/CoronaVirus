@@ -18940,3 +18940,132 @@ Processing by PastimesController#index as */*
 Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 0.2ms | Allocations: 1414)
 
 
+Started POST "/emails" for ::1 at 2020-03-26 18:24:33 +0000
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"hi@hi.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (1.3ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "hi@hi.com"], ["created_at", "2020-03-26 18:24:33.865873"], ["updated_at", "2020-03-26 18:24:33.865873"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 75ms (Views: 0.6ms | ActiveRecord: 3.0ms | Allocations: 6189)
+
+
+Started POST "/emails" for ::1 at 2020-03-26 18:24:45 +0000
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"hi@hi.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.6ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "hi@hi.com"], ["created_at", "2020-03-26 18:24:45.204777"], ["updated_at", "2020-03-26 18:24:45.204777"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 3.4ms | Allocations: 2359)
+
+
+Started GET "/advices" for ::1 at 2020-03-26 18:24:57 +0000
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 1472)
+
+
+Started POST "/emails" for ::1 at 2020-03-26 18:25:10 +0000
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"hi@ben.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.6ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "hi@ben.com"], ["created_at", "2020-03-26 18:25:10.140828"], ["updated_at", "2020-03-26 18:25:10.140828"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 6.2ms | Allocations: 2343)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-26 18:25:22 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 4.4ms | ActiveRecord: 0.3ms | Allocations: 1414)
+
+
+Started POST "/pastimes" for ::1 at 2020-03-26 18:35:06 +0000
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PastimesController#create as JSON
+  Parameters: {"icon"=>"fas fa-peace", "title"=>"hi", "content"=>"yo", "summary"=>"yo", "img_url"=>"none", "pastime"=>{"icon"=>"fas fa-peace", "summary"=>"yo", "content"=>"yo", "title"=>"hi", "img_url"=>"none"}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[36mPastime Create (3.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("icon", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["icon", "fas fa-peace"], ["summary", "yo"], ["content", "yo"], ["title", "hi"], ["img_url", "none"], ["created_at", "2020-03-26 18:35:06.447104"], ["updated_at", "2020-03-26 18:35:06.447104"]]
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+Completed 200 OK in 24ms (Views: 1.9ms | ActiveRecord: 6.1ms | Allocations: 2542)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-26 18:36:14 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 1633)
+
+
+Started POST "/pastimes" for ::1 at 2020-03-26 18:36:27 +0000
+Processing by PastimesController#create as JSON
+  Parameters: {"icon"=>"fas fa-peace", "title"=>"yo", "content"=>"yo", "summary"=>"yo", "img_url"=>"none", "pastime"=>{"icon"=>"fas fa-peace", "summary"=>"yo", "content"=>"yo", "title"=>"yo", "img_url"=>"none"}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[36mPastime Create (1.2ms)[0m  [1m[32mINSERT INTO "pastimes" ("icon", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["icon", "fas fa-peace"], ["summary", "yo"], ["content", "yo"], ["title", "yo"], ["img_url", "none"], ["created_at", "2020-03-26 18:36:27.360308"], ["updated_at", "2020-03-26 18:36:27.360308"]]
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+Completed 200 OK in 15ms (Views: 1.1ms | ActiveRecord: 3.3ms | Allocations: 2497)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-26 18:37:43 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 1799)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-26 18:38:31 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 14ms (Views: 12.5ms | ActiveRecord: 0.3ms | Allocations: 1799)
+
+
+Started POST "/pastimes" for ::1 at 2020-03-26 18:38:41 +0000
+Processing by PastimesController#create as JSON
+  Parameters: {"icon"=>"fas fa-peace", "title"=>"hi", "content"=>"yo", "summary"=>"yo", "img_url"=>"none", "pastime"=>{"icon"=>"fas fa-peace", "summary"=>"yo", "content"=>"yo", "title"=>"hi", "img_url"=>"none"}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[36mPastime Create (1.3ms)[0m  [1m[32mINSERT INTO "pastimes" ("icon", "summary", "content", "title", "img_url", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["icon", "fas fa-peace"], ["summary", "yo"], ["content", "yo"], ["title", "hi"], ["img_url", "none"], ["created_at", "2020-03-26 18:38:41.890552"], ["updated_at", "2020-03-26 18:38:41.890552"]]
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+Completed 200 OK in 20ms (Views: 0.9ms | ActiveRecord: 4.6ms | Allocations: 2497)
+
+
+Started GET "/pastimes" for ::1 at 2020-03-26 18:38:42 +0000
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (15.8ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 40ms (Views: 22.5ms | ActiveRecord: 15.8ms | Allocations: 1991)
+
+
+Started GET "/pastimes/6" for ::1 at 2020-03-26 18:38:45 +0000
+Processing by PastimesController#show as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/pastimes_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 848)
+
+
