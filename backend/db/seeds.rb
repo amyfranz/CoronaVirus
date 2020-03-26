@@ -30,9 +30,6 @@ Pastime.create(like_count: 5, icon: "fas fa-running", content: "teqweqweqxregreg
 Pastime.create(like_count: 10, icon: "fas fa-graduation-cap", content: "tefsdfsrgenergnergnlgerngerjk.ergjk.ergk .jergjnergjnrgenjlrxt", title: "Don't Panic Buy", summary: 'sgdjsahgfj', img_url: 'panic-buy.jpg')
 Pastime.create(like_count: 3, icon: "fas fa-gamepad", content: "tesdfergkgrklmgrenkrgenkregjnrgejrgjnkegrejnrgejngrjngrejngrjngrjnsdxt", title: "Exercise Regularly", summary: 'sgdjsahgfj', img_url: 'exercise.jpg')
 
+Email.create(email: 'hi')
+Email.create(email: 'bye')
 
-# Rating.create(pastime_id: 1)
-# Rating.create(pastime_id: 3)
-# Rating.create(pastime_id: 2)
-# Rating.create(pastime_id: 2)
-# Rating.create(pastime_id: 2)

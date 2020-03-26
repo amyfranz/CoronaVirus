@@ -6,8 +6,6 @@ const fetchData = (URL, option = null) => {
   }
 };
 
-
-
 // const createMap = () => {
 //   const map = L.map("map").setView([0, 0], 2);
 //   L.tileLayer(
@@ -162,3 +160,11 @@ const searchBar = () => {
 };
 // createMap();
 searchBar();
+
+const form = document.querySelector(".news-form");
+console.log(form);
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  console.log("hi");
+  console.log(e.target.input.email.value);
+});

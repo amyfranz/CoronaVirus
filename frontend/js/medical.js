@@ -24,9 +24,6 @@ const eachMedicalAdvice = medicalAdvice => {
   const div = document.createElement("div");
   div.className = "info-card";
 
-  // const divImg = document.createElement("div");
-  // div.class = "info-card-img";
-
   const divImg = document.createElement("div");
   divImg.className = "info-card-img";
   const img = document.createElement("img");
@@ -65,11 +62,17 @@ const eachMedicalAdvice = medicalAdvice => {
   divInfo.append(divDate, heading, p, btn1);
   div.append(divImg, divInfo);
   document.querySelector(".info-container").append(div);
+};
+
+function handleMedicalData(data) {
+  data.forEach(med => {
+    eachMedicalAdvice(med);
+  });
   const links = document.querySelectorAll(".info-container a");
   links.forEach(link => {
     link.addEventListener("click", e => fetchShow(e));
   });
-};
+}
 
 function fetchShow(event) {
   fetch(`http://localhost:3000/advices/${event.target.id}`)
@@ -80,28 +83,29 @@ function fetchShow(event) {
 }
 
 function displayShow(advice) {
+  console.log(advice);
   const container = document.querySelector(".show");
   const h1 = document.createElement("h1");
   h1.innerText = advice.title;
+  const img = document.createElement("img");
+  img.src = advice.image;
   const p = document.createElement("p");
-  p.innerText = advice.content;
+  p.innerHTML = advice.content;
   const a = document.createElement("a");
   a.innerText = "Back";
   a.className = "back-btn";
-  debugger;
   a.addEventListener("click", e => handleExit(e));
-  container.append(h1, p, a);
+  container.append(h1, img, p, a);
   document.querySelector(".info-container").style.display = "none";
 }
 
 function handleExit(e) {
   document.querySelector(".info-container").style.display = "grid";
   document.querySelector(".show").innerHTML = "";
-  fetchShow(e);
 }
 
 const renderIndex = data => {
-  data.forEach(medicalAdvice => eachMedicalAdvice(medicalAdvice));
+  handleMedicalData(data);
 };
 
 fetchData("http://localhost:3000/advices").then(renderIndex);
