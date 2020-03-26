@@ -36,3 +36,6 @@ Rating.create(rate: 4, pastime_id: 3)
 Rating.create(rate: 2, pastime_id: 2)
 Rating.create(rate: 1, pastime_id: 2)
 Rating.create(rate: 2, pastime_id: 2)
+
+Email.create(email: 'hi')
+Email.create(email: 'bye')
