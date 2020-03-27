@@ -192,6 +192,12 @@ a {
   letter-spacing: 1px;
 }
 
+.like-btn {
+  width: 5rem;
+  height: 5rem;
+  margin-top: 2rem;
+}
+
 .back-btn {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }

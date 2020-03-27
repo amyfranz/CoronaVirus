@@ -57,12 +57,14 @@ function displayShow(pastime) {
   const p = document.createElement("p");
   p.innerText = pastime.content;
   const like = document.querySelector("i");
-  like.className = "far fa-thumbs-up";
+  like.className = "far fa-thumbs-up fa-4x like-btn";
+  const p2 = document.createElement("p");
+  p2.innerText = `${pastime.like_count} Likes`;
   const a = document.createElement("a");
   a.innerText = "Back";
   a.className = "back-btn";
   a.addEventListener("click", e => handleExit(e));
-  container.append(h1, img, p, like, a);
+  container.append(h1, img, p, like, p2, a);
   document.querySelector(".pastimes").style.display = "none";
   like.addEventListener("click", () => {
     if (like.className === "far fa-thumbs-up") {
