@@ -21,7 +21,7 @@ class PastimesController < ApplicationController
 
     def update
         pastime = Pastime.find(params[:id])
-
+        pastime[:like_count] = params[:like_count]
         if pastime.save
           render json: pastime,status: :ok
         else
@@ -32,6 +32,6 @@ class PastimesController < ApplicationController
     private
 
     def allowed_params
-        params.require(:pastime).permit(:icon, :content, :title, :summary ,:img_url)
+        params.require(:pastime).permit(:like_count, :icon, :content, :title, :summary ,:img_url)
     end
 end

@@ -58,7 +58,7 @@ function displayShow(pastime, event) {
   const img = document.createElement("img");
   img.src = pastime.img_url;
   const p = document.createElement("p");
-  p.innerText = pastime.content;
+  p.innerHTML = pastime.content;
   const like = document.createElement("i");
   like.className = "far fa-thumbs-up";
   const a = document.createElement("a");
