@@ -22085,3 +22085,234 @@ Can't verify CSRF token authenticity.
 Completed 200 OK in 6ms (Views: 0.7ms | ActiveRecord: 2.5ms | Allocations: 3278)
 
 
+Started POST "/emails" for ::1 at 2020-04-20 13:43:36 +0100
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"amy.franz@gmail.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.9ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "amy.franz@gmail.com"], ["created_at", "2020-04-20 12:43:36.416608"], ["updated_at", "2020-04-20 12:43:36.416608"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 22ms (Views: 0.3ms | ActiveRecord: 1.9ms | Allocations: 6524)
+
+
+Started POST "/emails" for ::1 at 2020-04-20 13:43:38 +0100
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"amy.franz@gmail.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (1.0ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "amy.franz@gmail.com"], ["created_at", "2020-04-20 12:43:38.830932"], ["updated_at", "2020-04-20 12:43:38.830932"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 17ms (Views: 0.4ms | ActiveRecord: 4.7ms | Allocations: 2542)
+
+
+Started POST "/emails" for ::1 at 2020-04-20 13:45:17 +0100
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"amy.franz@gmail.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.3ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "amy.franz@gmail.com"], ["created_at", "2020-04-20 12:45:17.113216"], ["updated_at", "2020-04-20 12:45:17.113216"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.7ms | Allocations: 2354)
+
+
+Started GET "/advices" for ::1 at 2020-04-20 13:45:56 +0100
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.9ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 1.4ms | Allocations: 6082)
+
+
+Started GET "/advices/2" for ::1 at 2020-04-20 13:46:05 +0100
+Processing by AdvicesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/advices_controller.rb:8:in `show'
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 1213)
+
+
+Started GET "/advices/4" for ::1 at 2020-04-20 13:46:11 +0100
+Processing by AdvicesController#show as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/advices_controller.rb:8:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 833)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 13:46:18 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (1.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 13.5ms | ActiveRecord: 2.7ms | Allocations: 9618)
+
+
+Started POST "/emails" for ::1 at 2020-04-20 13:53:31 +0100
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"amy.franz@gmail.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.3ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "amy.franz@gmail.com"], ["created_at", "2020-04-20 12:53:31.684683"], ["updated_at", "2020-04-20 12:53:31.684683"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 2.6ms | Allocations: 2340)
+
+
+Started GET "/advices" for ::1 at 2020-04-20 13:54:02 +0100
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms | Allocations: 1667)
+
+
+Started GET "/advices/3" for ::1 at 2020-04-20 13:54:10 +0100
+Processing by AdvicesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/advices_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 892)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 13:54:17 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 2683)
+
+
+Started POST "/emails" for ::1 at 2020-04-20 15:47:22 +0100
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by EmailsController#create as JSON
+  Parameters: {"email"=>"amy.franz@gmail.com"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[36mEmail Create (0.8ms)[0m  [1m[32mINSERT INTO "emails" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "amy.franz@gmail.com"], ["created_at", "2020-04-20 14:47:22.628683"], ["updated_at", "2020-04-20 14:47:22.628683"]]
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/emails_controller.rb:15:in `create'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.8ms | Allocations: 2340)
+
+
+Started GET "/advices" for ::1 at 2020-04-20 15:47:45 +0100
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.6ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.6ms | Allocations: 1667)
+
+
+Started GET "/advices/2" for ::1 at 2020-04-20 15:47:49 +0100
+Processing by AdvicesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mAdvice Load (0.2ms)[0m  [1m[34mSELECT "advices".* FROM "advices" WHERE "advices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/advices_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 826)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 15:47:55 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (2.5ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 5.0ms | ActiveRecord: 2.5ms | Allocations: 2683)
+
+
+Started POST "/pastimes" for ::1 at 2020-04-20 15:48:30 +0100
+Processing by PastimesController#create as JSON
+  Parameters: {"like_count"=>0, "icon"=>"fas fa-graduation-cap", "title"=>"Budgeting during the virus", "content"=>"efwgrhtjyuyfjhdwefrgthxdrcfbhjnikmlkjilgydrsgxfchjvbk", "summary"=>"This is how to save money", "img_url"=>"https://s-i.huffpost.com/gen/1700371/images/o-YOUNG-PEOPLE-MONEY-facebook.jpg", "pastime"=>{"icon"=>"fas fa-graduation-cap", "summary"=>"This is how to save money", "content"=>"efwgrhtjyuyfjhdwefrgthxdrcfbhjnikmlkjilgydrsgxfchjvbk", "title"=>"Budgeting during the virus", "img_url"=>"https://s-i.huffpost.com/gen/1700371/images/o-YOUNG-PEOPLE-MONEY-facebook.jpg", "like_count"=>0}}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[36mPastime Create (0.5ms)[0m  [1m[32mINSERT INTO "pastimes" ("icon", "summary", "content", "title", "img_url", "like_count", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["icon", "fas fa-graduation-cap"], ["summary", "This is how to save money"], ["content", "efwgrhtjyuyfjhdwefrgthxdrcfbhjnikmlkjilgydrsgxfchjvbk"], ["title", "Budgeting during the virus"], ["img_url", "https://s-i.huffpost.com/gen/1700371/images/o-YOUNG-PEOPLE-MONEY-facebook.jpg"], ["like_count", 0], ["created_at", "2020-04-20 14:48:30.981975"], ["updated_at", "2020-04-20 14:48:30.981975"]]
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+  [1m[35m (3.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:15:in `create'
+Completed 200 OK in 43ms (Views: 1.7ms | ActiveRecord: 3.8ms | Allocations: 2649)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 15:48:31 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.7ms | ActiveRecord: 0.3ms | Allocations: 2860)
+
+
+Started GET "/pastimes/7" for ::1 at 2020-04-20 15:48:37 +0100
+Processing by PastimesController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mPastime Load (0.3ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/pastimes_controller.rb:8:in `show'
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 953)
+
+
+Started PATCH "/pastimes/7" for ::1 at 2020-04-20 15:48:44 +0100
+Processing by PastimesController#update as JSON
+  Parameters: {"like_count"=>1, "id"=>"7", "pastime"=>{"like_count"=>1}}
+Can't verify CSRF token authenticity.
+  [1m[36mPastime Load (0.1ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/pastimes_controller.rb:23:in `update'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+  [1m[36mPastime Update (0.3ms)[0m  [1m[33mUPDATE "pastimes" SET "like_count" = ?, "updated_at" = ? WHERE "pastimes"."id" = ?[0m  [["like_count", 1], ["updated_at", "2020-04-20 14:48:44.075194"], ["id", 7]]
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+  [1m[35m (2.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+Completed 200 OK in 7ms (Views: 0.6ms | ActiveRecord: 2.8ms | Allocations: 2916)
+
+
+Started GET "/pastimes/3" for ::1 at 2020-04-20 15:48:51 +0100
+Processing by PastimesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/pastimes_controller.rb:8:in `show'
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 946)
+
+
+Started PATCH "/pastimes/3" for ::1 at 2020-04-20 15:48:54 +0100
+Processing by PastimesController#update as JSON
+  Parameters: {"like_count"=>4, "id"=>"3", "pastime"=>{"like_count"=>4}}
+Can't verify CSRF token authenticity.
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes" WHERE "pastimes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/pastimes_controller.rb:23:in `update'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+  [1m[36mPastime Update (0.3ms)[0m  [1m[33mUPDATE "pastimes" SET "like_count" = ?, "updated_at" = ? WHERE "pastimes"."id" = ?[0m  [["like_count", 4], ["updated_at", "2020-04-20 14:48:54.960895"], ["id", 3]]
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/pastimes_controller.rb:25:in `update'
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 2.8ms | Allocations: 2972)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 15:49:27 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 2860)
+
+
+Started GET "/advices" for ::1 at 2020-04-20 15:55:09 +0100
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AdvicesController#index as */*
+  [1m[36mAdvice Load (0.1ms)[0m  [1m[34mSELECT "advices".* FROM "advices"[0m
+  ↳ app/controllers/advices_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 1667)
+
+
+Started GET "/pastimes" for ::1 at 2020-04-20 15:55:10 +0100
+Processing by PastimesController#index as */*
+  [1m[36mPastime Load (0.2ms)[0m  [1m[34mSELECT "pastimes".* FROM "pastimes"[0m
+  ↳ app/controllers/pastimes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 2883)
+
+

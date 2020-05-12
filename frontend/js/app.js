@@ -152,7 +152,7 @@ const searchBar = () => {
     }
   };
 };
-// createMap();
+createMap();
 searchBar();
 
 const form = document.querySelector(".news-form");
